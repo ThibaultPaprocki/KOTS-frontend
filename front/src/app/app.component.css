@@ -1,0 +1,21 @@
+#logo {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+img {
+  vertical-align: middle;
+}
+
+.nav-link {
+  display: block;
+  padding: 5rem 1rem;
+}
+
+.nav {
+  background-color: white;
+}
+
+::marker {
+  text-decoration: none;
+}

@@ -1,0 +1,3 @@
+#Tout ce qu'il y a en dessous va et doit être ignoré lors du git add etc...
+yarn.lock
+/dist
