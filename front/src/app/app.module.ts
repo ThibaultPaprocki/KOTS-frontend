@@ -7,12 +7,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
-import { MapComponent } from './map/map.component';
 import { TestComponent } from './home/test/test.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { EdituserComponent } from './edituser/edituser.component';
 
 @NgModule({
@@ -21,11 +20,10 @@ import { EdituserComponent } from './edituser/edituser.component';
     HomeComponent,
     MenuComponent,
     FourOhFourComponent,
-    MapComponent,
     TestComponent,
     LoginComponent,
     RegisterComponent,
-    EdituserComponent
+    EdituserComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +31,9 @@ import { EdituserComponent } from './edituser/edituser.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
