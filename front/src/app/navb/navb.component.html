@@ -1,0 +1,29 @@
+<ul class="navbar navbar-expand rounded border-bottom">
+  <li class="nav-icon">
+    <a class="nav-link active" routerLink="home"
+      ><img id="logo" src="../assets/images/KOTS.svg"
+    /></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" routerLink="home">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="menu">Menu</a>
+  </li>
+  <li>
+    <form onsubmit="return false;">
+      <input
+        class="form-control search ui-autocomplete-input"
+        type="search"
+        placeholder="Search for users ..."
+        autocomplete="off"
+      />
+    </form>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link push" routerLink="login">Log In</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link push" routerLink="register">Sign Up</a>
+  </li>
+</ul>

@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EdituserComponent } from './edituser/edituser.component';
+import { NavbComponent } from './navb/navb.component';
+import { FootComponent } from './foot/foot.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { EdituserComponent } from './edituser/edituser.component';
     LoginComponent,
     RegisterComponent,
     EdituserComponent,
+    NavbComponent,
+    FootComponent,
   ],
   imports: [
     BrowserModule,
