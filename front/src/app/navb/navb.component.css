@@ -10,10 +10,6 @@ ul {
   background-color: rgba(80, 79, 78, 0.5);
 }
 
-.navbar-expand {
-  justify-content: space-evenly;
-}
-
 .nav-link {
   display: initial;
 }
