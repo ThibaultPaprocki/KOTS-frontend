@@ -6,8 +6,15 @@
       <div class="input-group-prepend">
         <span class="input-group-text">@</span>
       </div>
-      <input formControlName="username" type="text" class="form-control" id="username" placeholder="Username" required="">
-      <div class="invalid-feedback" style="width: 100%;">
+      <input
+        formControlName="username"
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Username"
+        required=""
+      />
+      <div class="invalid-feedback" style="width: 100%">
         Your username is required.
       </div>
     </div>
@@ -15,14 +22,24 @@
 
   <div class="mb-3">
     <label for="password">Password<span class="text-muted"></span></label>
-    <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+    />
     <div class="invalid-feedback">
       Please enter a valid username and password to connect.
     </div>
   </div>
 
-  <button [disabled]="loginForm.invalid" class="btn btn-primary btn-lg btn-block" type="submit">Continue to connect</button>
+  <button
+    [disabled]="loginForm.invalid"
+    class="btn btn-primary btn-lg btn-block"
+    type="submit"
+    (click)="logAccount()"
+  >
+    Connect
+  </button>
 </div>
-
-
-
