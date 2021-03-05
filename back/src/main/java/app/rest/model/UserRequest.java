@@ -1,9 +1,18 @@
-package rest.model;
+package app.rest.model;
 
 public class UserRequest {
     private int id;
     private String username;
     private String password;
+
+    @Override
+    public String toString() {
+        return "UserRequest{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;

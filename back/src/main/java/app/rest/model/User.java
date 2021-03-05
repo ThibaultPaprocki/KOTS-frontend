@@ -1,8 +1,5 @@
-package rest.model;
+package app.rest.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-@EntityScan
 public class User {
     private int id;
     private String username;
