@@ -2,10 +2,10 @@
   background-color: rgba(80, 79, 78, 0.5);
   padding: 45px 0 20px;
   font-size: 15px;
-  line-height: 24px;
+  line-height: 25px;
   color: #737373;
   width: 100%;
-  position: relative;
+  min-height: 100%;
 }
 .site-footer hr {
   border-top-color: #bbb;
@@ -126,10 +126,10 @@
   background-color: #00aced;
 }
 .social-icons a.linkedin:hover {
-  background-color: #007bb6;
+  background-color: #5f00b8;
 }
 .social-icons a.dribbble:hover {
-  background-color: #ea4c89;
+  background-color: #ea4c4c;
 }
 @media (max-width: 767px) {
   .social-icons li.title {

@@ -14,15 +14,7 @@ export class UserService {
     return this.httpClient.post('http://localhost:8080/register', request);
   }
 
-  // login(request: UserRequest): Observable<any> {
-  //   return this.httpClient.post(
-  //     'http://localhost:8080/user/login',
-  //     request,
-  //     {}
-  //   );
-  // }
-
-  getUser(id: string): Observable<User> {
-    return this.httpClient.get<User>('http://localhost:8080/user/' + id);
+  login(request: UserRequest) {
+    return this.httpClient.post('http://localhost:8080/login', request);
   }
 }

@@ -17,15 +17,15 @@ export class EdituserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe((params) => {
-      this.userService.getUser(params.id).subscribe(
-        (user) => {
-          this.user = user;
-        },
-        (error) => {
-          console.error('user not found');
-        }
-      );
-    });
+    // this.activeRoute.params.subscribe((params) => {
+    // this.userService.getUser(params.id).subscribe(
+    //   (user) => {
+    //     this.user = user;
+    //   },
+    //   (error) => {
+    //     console.error('user not found');
+    //   }
+    //   );
+    // });
   }
 }
