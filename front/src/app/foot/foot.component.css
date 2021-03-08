@@ -5,7 +5,6 @@
   line-height: 25px;
   color: #737373;
   width: 100%;
-  min-height: 100%;
 }
 .site-footer hr {
   border-top-color: #bbb;
@@ -125,10 +124,10 @@
 .social-icons a.twitter:hover {
   background-color: #00aced;
 }
-.social-icons a.linkedin:hover {
+.social-icons a.twitch:hover {
   background-color: #5f00b8;
 }
-.social-icons a.dribbble:hover {
+.social-icons a.youtube:hover {
   background-color: #ea4c4c;
 }
 @media (max-width: 767px) {
