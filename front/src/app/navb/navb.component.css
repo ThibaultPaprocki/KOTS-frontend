@@ -8,6 +8,7 @@ ul {
 
 .navbar {
   background-color: rgba(80, 79, 78, 0.5);
+  flex-shrink: 0;
 }
 
 .nav-link {

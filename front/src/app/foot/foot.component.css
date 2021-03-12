@@ -1,3 +1,7 @@
+footer {
+  flex-shrink: 0;
+}
+
 .site-footer {
   background-color: rgba(80, 79, 78, 0.5);
   padding: 45px 0 20px;
