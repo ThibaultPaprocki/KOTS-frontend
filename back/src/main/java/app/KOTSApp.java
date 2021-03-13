@@ -13,7 +13,7 @@ public class KOTSApp {
 		SpringApplication.run(KOTSApp.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -21,6 +21,6 @@ public class KOTSApp {
 				registry.addMapping("/**").allowedOrigins("http://localhost:4200"); //origin à changer lors du déploiement
 			}
 		};
-	}
+	}*/
 
 }
