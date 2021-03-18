@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserRequest } from '../edituser/register.model';
-import { UserService } from '../user.service';
+import { AppService } from '../app.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connexion',
@@ -10,19 +11,31 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  credentials = { username: '', password: '' };
 
-  constructor(private userService: UserService) {
+  constructor(
+    private app: AppService,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  logAccount() {
-    const request: UserRequest = {
+  // login() {
+  //   this.app.authenticate(this.credentials, () => {
+  //     this.router.navigateByUrl('/');
+  //   });
+  //   return false;
+  // }
+
+  login() {
+    this.credentials = {
       username: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value,
     };
-    this.userService.login(this.loginForm.value);
+    this.app.login(this.credentials);
   }
 }

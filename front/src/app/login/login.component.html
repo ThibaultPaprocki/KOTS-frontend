@@ -1,4 +1,4 @@
-<div [formGroup]="loginForm" class="container">
+<form [formGroup]="loginForm" class="container" (submit)="login()">
   <h1 class="mb-3">Login</h1>
   <div class="mb-3">
     <label for="username">Username</label>
@@ -38,8 +38,7 @@
     [disabled]="loginForm.invalid"
     class="btn btn-primary btn-lg btn-block"
     type="submit"
-    (click)="logAccount()"
   >
     Connect
   </button>
-</div>
+</form>

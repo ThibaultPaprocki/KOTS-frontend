@@ -6,13 +6,10 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
-import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
-import { TestComponent } from './home/test/test.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { EdituserComponent } from './edituser/edituser.component';
 import { NavbComponent } from './navb/navb.component';
 import { FootComponent } from './foot/foot.component';
 
@@ -21,11 +18,8 @@ import { FootComponent } from './foot/foot.component';
     AppComponent,
     HomeComponent,
     MenuComponent,
-    FourOhFourComponent,
-    TestComponent,
     LoginComponent,
     RegisterComponent,
-    EdituserComponent,
     NavbComponent,
     FootComponent,
   ],

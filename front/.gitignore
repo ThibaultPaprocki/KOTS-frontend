@@ -41,6 +41,7 @@ yarn-error.log
 yarn.lock
 testem.log
 /typings
+/target
 
 # e2e
 e2e/
