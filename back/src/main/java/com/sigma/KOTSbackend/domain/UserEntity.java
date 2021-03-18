@@ -1,29 +1,28 @@
-package com.sigma.KOTSbackend.rest.model;
+package com.sigma.KOTSbackend.domain;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "UserAccount")
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idUser")
     private int id;
 
-    //@ForeignKey(name = "username")
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "email")
+    private String email;
 
-    public User(int id, String username, String password) {
+    public UserEntity(int id, String username, String email) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.email = email;
     }
 
-    public User() {
+    public UserEntity() {
     }
 
     public int getId() {
@@ -42,11 +41,11 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String password) {
+        this.email = password;
     }
 }

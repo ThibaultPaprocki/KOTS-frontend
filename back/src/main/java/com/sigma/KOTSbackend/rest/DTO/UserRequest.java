@@ -1,4 +1,4 @@
-package com.sigma.KOTSbackend.rest.model;
+package com.sigma.KOTSbackend.rest.DTO;
 
 public class UserRequest {
     private String username;
