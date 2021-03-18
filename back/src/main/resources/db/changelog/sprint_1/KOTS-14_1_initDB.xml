@@ -12,7 +12,8 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="enabled">
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
