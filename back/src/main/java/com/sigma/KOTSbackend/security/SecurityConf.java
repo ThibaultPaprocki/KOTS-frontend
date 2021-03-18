@@ -33,7 +33,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .cors().configurationSource(corsConfigurationSource());
-        http.authorizeRequests().anyRequest().permitAll().anyRequest()
+        http.authorizeRequests().antMatchers("/register","/login","/home").permitAll().anyRequest()
                 .authenticated()
                 .and()
                 .logout().permitAll()
@@ -61,6 +61,11 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         auth.userDetailsService(jdbcUserDetailsManager).passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager(){
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean

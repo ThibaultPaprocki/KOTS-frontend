@@ -16,24 +16,22 @@ import java.util.List;
 @Service
 public class AccountService {
 
-    private BCryptPasswordEncoder newPassword;
+    private final BCryptPasswordEncoder newPassword;
+    private final AccountRepository accountRepository;
+    private final JdbcUserDetailsManager jdbcUserDetailsManager;
 
     @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private JdbcUserDetailsManager jdbcUserDetailsManager;
-
-    public AccountService(){
-        this.newPassword = new BCryptPasswordEncoder();
+    public AccountService(BCryptPasswordEncoder newPassword,AccountRepository accountRepository,JdbcUserDetailsManager jdbcUserDetailsManager){
+        this.newPassword = newPassword;
+        this.accountRepository = accountRepository;
+        this.jdbcUserDetailsManager = jdbcUserDetailsManager;
     }
 
     public void registerUser(UserRequest request){
         UserDetails userDetails = new User(request.getUsername(),newPassword.encode(request.getPassword()), List.of(new SimpleGrantedAuthority("USER")));
         this.jdbcUserDetailsManager.createUser(userDetails);
 
-        UserEntity user=new UserEntity();
-        user.setUsername(request.getUsername());
+        UserEntity user=new UserEntity(request.getUsername(),request.getMail());
         this.accountRepository.save(user);
     }
 }

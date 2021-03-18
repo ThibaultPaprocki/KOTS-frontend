@@ -3,23 +3,22 @@ package com.sigma.KOTSbackend.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "UserAccount")
+@Table(name = "user_account")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUser")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "mail")
+    private String mail;
 
-    public UserEntity(int id, String username, String email) {
-        this.id = id;
+    public UserEntity(String username, String mail) {
         this.username = username;
-        this.email = email;
+        this.mail = mail;
     }
 
     public UserEntity() {
@@ -41,11 +40,11 @@ public class UserEntity {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String password) {
-        this.email = password;
+    public void setMail(String password) {
+        this.mail = mail;
     }
 }
