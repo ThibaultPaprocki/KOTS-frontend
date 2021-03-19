@@ -37,6 +37,7 @@ public class AccountService {
         this.accountRepository.save(user);
     }
 
+
     public UserEntity getUser(String username){
         return this.accountRepository.findByUsername(username);
     }

@@ -2,3 +2,14 @@ ngb-carousel {
   width: fit-content;
   outline: none;
 }
+
+.img_transform img {
+  width: 1000px;
+  height: 600px;
+  background-position: center;
+}
+
+p {
+  border-color: black;
+  font-weight: bold;
+}

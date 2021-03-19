@@ -8,12 +8,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { NavbComponent } from './navb/navb.component';
 import { FootComponent } from './foot/foot.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { ProfilComponent } from './profil/profil.component';
 import { EventComponent } from './event/event.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from './http.request.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,15 @@ import { EventComponent } from './event/event.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpRequestInterceptor,
+        multi: true,
+      },
+    ],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
