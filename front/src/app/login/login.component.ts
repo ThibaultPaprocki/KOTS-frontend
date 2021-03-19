@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NavbComponent } from '../navb/navb.component';
 
 @Component({
   selector: 'app-connexion',
@@ -11,31 +12,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  credentials = { username: '', password: '' };
 
-  constructor(
-    private app: AppService,
-    private http: HttpClient,
-    private router: Router
-  ) {
+  constructor(private app: AppService, private router: Router) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  // login() {
-  //   this.app.authenticate(this.credentials, () => {
-  //     this.router.navigateByUrl('/');
-  //   });
-  //   return false;
-  // }
-
   login() {
-    this.credentials = {
-      username: this.loginForm.get('username')?.value,
-      password: this.loginForm.get('password')?.value,
-    };
-    this.app.login(this.credentials);
+    this.app.login(this.loginForm.value).subscribe(
+      () => {
+        this.router.navigate(['profil']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -1,6 +1,7 @@
 package com.sigma.KOTSbackend.domain;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "user_account")
@@ -47,4 +48,5 @@ public class UserEntity {
     public void setMail(String password) {
         this.mail = mail;
     }
+
 }

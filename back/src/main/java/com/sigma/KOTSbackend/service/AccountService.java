@@ -4,6 +4,7 @@ import com.sigma.KOTSbackend.repository.AccountRepository;
 import com.sigma.KOTSbackend.domain.UserEntity;
 import com.sigma.KOTSbackend.rest.DTO.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -33,5 +35,9 @@ public class AccountService {
 
         UserEntity user=new UserEntity(request.getUsername(),request.getMail());
         this.accountRepository.save(user);
+    }
+
+    public UserEntity getUser(String username){
+        return this.accountRepository.findByUsername(username);
     }
 }

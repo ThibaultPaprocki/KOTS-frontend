@@ -15,13 +15,20 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.email]),
+      mail: new FormControl('', [Validators.email]),
     });
   }
 
   ngOnInit(): void {}
 
   registerUser(): void {
-    this.userService.register(this.registerForm.value).subscribe();
+    this.userService.register(this.registerForm.value).subscribe(
+      () => {
+        this.router.navigate(['login']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
