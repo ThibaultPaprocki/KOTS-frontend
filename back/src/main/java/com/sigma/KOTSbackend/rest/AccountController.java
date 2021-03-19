@@ -1,26 +1,33 @@
 package com.sigma.KOTSbackend.rest;
 
+import com.sigma.KOTSbackend.domain.UserEntity;
 import com.sigma.KOTSbackend.rest.DTO.UserRequest;
 import com.sigma.KOTSbackend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 
 @CrossOrigin
 @RestController
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    public AccountController(){
+    @Autowired
+    public AccountController(AccountService accountService){
+        this.accountService=accountService;
     }
 
     @PostMapping("/register")
     public void register(@RequestBody(required = true) UserRequest request){
      this.accountService.registerUser(request);
+    }
+
+    @GetMapping("/get/user")
+    public UserEntity getUser(Principal principal){
+        return this.accountService.getUser(principal.getName());
     }
 }

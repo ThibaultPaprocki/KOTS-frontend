@@ -1,22 +1,17 @@
-<form [formGroup]="loginForm" class="container" (submit)="login()">
+<form [formGroup]="loginForm" class="container">
   <h1 class="mb-3">Login</h1>
   <div class="mb-3">
     <label for="username">Username</label>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">@</span>
-      </div>
-      <input
-        formControlName="username"
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Username"
-        required=""
-      />
-      <div class="invalid-feedback" style="width: 100%">
-        Your username is required.
-      </div>
+    <input
+      formControlName="username"
+      type="text"
+      class="form-control"
+      id="username"
+      placeholder="Username"
+      required=""
+    />
+    <div class="invalid-feedback" style="width: 100%">
+      Your username is required.
     </div>
   </div>
 
@@ -38,6 +33,7 @@
     [disabled]="loginForm.invalid"
     class="btn btn-primary btn-lg btn-block"
     type="submit"
+    (click)="login()"
   >
     Connect
   </button>

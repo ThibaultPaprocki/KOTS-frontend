@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 import java.util.List;
 
 @EnableWebSecurity
@@ -31,9 +32,10 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .cors().configurationSource(corsConfigurationSource());
-        http.authorizeRequests().antMatchers("/register","/login","/home").permitAll().anyRequest()
+        http.headers().frameOptions().disable();
+        http.csrf().disable();
+        http.cors().configurationSource(corsConfigurationSource());
+        http.authorizeRequests().antMatchers("/register","/login").permitAll().anyRequest()
                 .authenticated()
                 .and()
                 .logout().permitAll()
@@ -52,6 +54,8 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 HttpMethod.DELETE.name()
         ));
 
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
         return source;
