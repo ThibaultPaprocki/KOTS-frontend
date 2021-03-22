@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { UserService } from '../user.service';
 import { User } from '../user.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { User } from '../user.model';
 })
 export class ProfilComponent implements OnInit {
   user: User;
-  constructor(private app: AppService) {}
+  constructor(private app: UserService) {}
 
   ngOnInit(): void {
     this.user = new User();

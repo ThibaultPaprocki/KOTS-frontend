@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppService } from '../app.service';
+import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NavbComponent } from '../navb/navb.component';
@@ -13,7 +13,7 @@ import { NavbComponent } from '../navb/navb.component';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private app: AppService, private router: Router) {
+  constructor(private app: UserService, private router: Router) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
