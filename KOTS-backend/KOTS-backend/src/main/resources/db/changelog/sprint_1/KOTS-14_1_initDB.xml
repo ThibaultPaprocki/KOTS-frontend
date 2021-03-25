@@ -1,0 +1,67 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+<changeSet id="KOTS-14_1_initDB" author="ludo">
+
+    <createTable tableName="users">
+        <column name="username" type="varchar(50)">
+            <constraints nullable="false" unique="true" primaryKey="true"/>
+        </column>
+        <column name="password" type="varchar(150)">
+            <constraints nullable="false" />
+        </column>
+        <column name="enabled" type="boolean">
+            <constraints nullable="false" />
+        </column>
+    </createTable>
+
+    <createTable tableName="userinfo">
+        <column name="idUserinfo" type="int">
+            <constraints nullable="false" unique="true" primaryKey="true"/>
+        </column>
+        <column name="username" type="varchar(50)">
+            <constraints nullable="false" foreignKeyName="fk_public_users" references="users(username)"/>
+        </column>
+        <column name="mail" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="description" type="text">
+            <constraints nullable="true"/>
+        </column>
+        <column name="imgUser" type="blob">
+            <constraints nullable="true"/>
+        </column>
+    </createTable>
+
+
+
+    <createTable tableName="authorities">
+        <column name="username" type="varchar(50)">
+            <constraints nullable="false" unique="true" foreignKeyName="fk_public_users" references="users(username)"/>
+        </column>
+        <column name="authority" type="varchar(50)">
+            <constraints nullable="false" />
+        </column>
+    </createTable>
+
+    <!--
+
+    <createTable tableName="trophy">
+    </createTable>
+
+    <createTable tableName="challenge">
+    </createTable>
+
+    <createTable tableName="tournament">
+    </createTable>
+
+    <createTable tableName="game">
+    </createTable>
+    -->
+
+</changeSet>
+
+</databaseChangeLog>
