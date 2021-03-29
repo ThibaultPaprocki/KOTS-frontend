@@ -6,7 +6,7 @@ import { RegisterComponent } from "./register/register.component";
 import { FourOhFourComponent } from "./four-oh-four/four-oh-four.component";
 import { ProfilComponent } from "./profil/profil.component";
 import { EventComponent } from "./event/event.component";
-import { AuthGuard } from "./auth.gard";
+import { AuthGuard } from "./shared/auth/auth.gard";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
