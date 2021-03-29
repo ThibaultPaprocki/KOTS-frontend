@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { User } from '../user.model';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "../user.service";
+import { User } from "../user.model";
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css'],
+  selector: "app-profil",
+  templateUrl: "./profil.component.html",
+  styleUrls: ["./profil.component.css"],
 })
 export class ProfilComponent implements OnInit {
-  user: User;
-  constructor(private app: UserService) {}
+  currentUser: User;
+  displayUser: boolean = false;
+
+  constructor(private app: UserService) {
+    this.currentUser = this.app.currentUserValue;
+  }
 
   ngOnInit(): void {
-    this.user = new User();
+    // this.user = new User();
+    // this.app.getCurrentUser().subscribe(
+    //   (user) => {
+    //     this.user = user;
+    //   },
+    //   (error) => console.log(error)
+    // );
+  }
 
-    this.app.getCurrentUser().subscribe(
-      (user) => {
-        this.user = user;
-      },
-      (error) => console.log(error)
-    );
+  display() {
+    this.displayUser = !this.displayUser;
   }
 }
