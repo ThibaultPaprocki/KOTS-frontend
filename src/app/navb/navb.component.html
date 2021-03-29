@@ -12,11 +12,16 @@
   <li class="nav-item p-2 flex-grow-1 bd-highlight">
     <a class="nav-link" routerLink="event">Event</a>
   </li>
-  <li class="nav-item p-2 bd-highlight">
+  <li class="nav-item p-2 bd-highlight" *ngIf="!currentUser">
     <a class="nav-link" routerLink="login">Log In</a>
   </li>
-
-  <li class="nav-item p-2 bd-highlight">
+  <li class="nav-item p-2 bd-highlight" *ngIf="!currentUser">
     <a class="nav-link" routerLink="register">Sign Up</a>
+  </li>
+  <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
+    <a class="nav-link" routerLink="profil">{{ currentUser.username }}</a>
+  </li>
+  <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
+    <a class="nav-link" (click)="logout()">Logout</a>
   </li>
 </ul>
