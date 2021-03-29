@@ -4,7 +4,9 @@ import { UserRequest } from "../model/register.model";
 import { User } from "../model/user.model";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map, mergeAll } from "rxjs/operators";
-import { KOTS_backend_API } from "../../../environments/constant.environment";
+import { environment } from "../../../environments/environment";
+
+const KOTS_backend_API = environment.url;
 
 @Injectable({
   providedIn: "root",
@@ -25,14 +27,14 @@ export class UserService {
   }
 
   register(request: UserRequest) {
-    return this.httpClient.post(`${KOTS_backend_API}/register`, request);
+    return this.httpClient.post(`${KOTS_backend_API}register`, request);
     // ToDo
     // login automatique souhaitable juste après le register
   }
 
   login(request: UserRequest) {
     return this.httpClient
-      .post<void>(`${KOTS_backend_API}/login`, request)
+      .post<void>(`${KOTS_backend_API}login`, request)
       .pipe(
         map(() => {
           return this.getCurrentUser();
@@ -50,7 +52,7 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return this.httpClient.get<User>(`${KOTS_backend_API}/get/user"`);
+    return this.httpClient.get<User>(`${KOTS_backend_API}get/user"`);
   }
 
   logout() {
