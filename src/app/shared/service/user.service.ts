@@ -50,7 +50,7 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return this.httpClient.get<User>(environment.url + "get/user");
+    return this.httpClient.get<User>(environment.url + "user");
   }
 
   logout() {
