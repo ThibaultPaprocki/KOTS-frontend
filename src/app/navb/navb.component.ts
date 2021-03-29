@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppComponent } from "../app.component";
-import { User } from "../user.model";
-import { UserService } from "../user.service";
+import { User } from "../shared/model/user.model";
+import { UserService } from "../shared/service/user.service";
 
 @Component({
   selector: "app-navb",

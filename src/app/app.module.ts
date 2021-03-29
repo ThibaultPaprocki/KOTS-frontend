@@ -14,7 +14,7 @@ import { FourOhFourComponent } from "./four-oh-four/four-oh-four.component";
 import { ProfilComponent } from "./profil/profil.component";
 import { EventComponent } from "./event/event.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { HttpRequestInterceptor } from "./http.request.interceptor";
+import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
 
 @NgModule({
   declarations: [

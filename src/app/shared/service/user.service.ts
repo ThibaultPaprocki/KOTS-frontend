@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { UserRequest } from "./register.model";
-import { User } from "./user.model";
+import { UserRequest } from "../model/register.model";
+import { User } from "../model/user.model";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map, mergeAll } from "rxjs/operators";
+import { KOTS_backend_API } from "../../../environments/constant.environment";
 
 @Injectable({
   providedIn: "root",
@@ -24,14 +25,14 @@ export class UserService {
   }
 
   register(request: UserRequest) {
-    return this.httpClient.post("http://localhost:8080/register", request);
+    return this.httpClient.post(`${KOTS_backend_API}/register`, request);
     // ToDo
     // login automatique souhaitable juste après le register
   }
 
   login(request: UserRequest) {
     return this.httpClient
-      .post<void>("http://localhost:8080/login", request)
+      .post<void>(`${KOTS_backend_API}/login`, request)
       .pipe(
         map(() => {
           return this.getCurrentUser();
@@ -49,7 +50,7 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return this.httpClient.get<User>("http://localhost:8080/get/user");
+    return this.httpClient.get<User>(`${KOTS_backend_API}/get/user"`);
   }
 
   logout() {

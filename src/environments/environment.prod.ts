@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  url: "KOTS-backend-0.0.1-SNAPSHOT",
+  production: true,
 };
