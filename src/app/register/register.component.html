@@ -1,7 +1,7 @@
 <div [formGroup]="registerForm" class="container">
-  <h1 class="mb-3">Register</h1>
+  <h1 class="mb-3 text-center">Register</h1>
   <div class="mb-3">
-    <label for="username">Username</label>
+    <label for="username"><h3>Username</h3></label>
     <input
       formControlName="username"
       type="text"
@@ -16,7 +16,10 @@
   </div>
 
   <div class="mb-3">
-    <label for="password">Password<span class="text-muted"></span></label>
+    <label for="password"
+      ><h3>Password</h3>
+      <span class="text-muted"></span
+    ></label>
     <input
       formControlName="password"
       type="password"
@@ -30,7 +33,10 @@
   </div>
 
   <div class="mb-3">
-    <label for="email">Email (Optionnal)<span class="text-muted"></span></label>
+    <label for="email"
+      ><h3>Email (Optionnal)</h3>
+      <span class="text-muted"></span
+    ></label>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text">@</span>

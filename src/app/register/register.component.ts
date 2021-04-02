@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserService } from "../shared/service/user.service";
+import { AuthService } from "../shared/service/auth.service";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-inscription",
@@ -11,7 +12,11 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     this.registerForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
@@ -22,11 +27,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   registerUser(): void {
-    this.userService.register(this.registerForm.value).subscribe(
+    this.authService.register(this.registerForm.value).subscribe(
       () => {
-        this.router.navigate(["login"]);
+        this.authService.login(this.registerForm.value).subscribe(
+          () => {
+            this.router.navigate(["profil"]);
+          },
+          (error) => {
+            this.toastr.error("Impossible error");
+            console.log(error);
+          }
+        );
       },
       (error) => {
+        this.toastr.error("Username already used");
         console.log(error);
       }
     );

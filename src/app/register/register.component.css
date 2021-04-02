@@ -1,0 +1,12 @@
+h1 {
+  color: white;
+  -webkit-text-stroke: 1px black; /* width and color */
+  font-weight: bolder;
+}
+
+h3 {
+  color: white;
+  -webkit-text-stroke: 1px black; /* width and color */
+  font-size: 30px;
+  font-weight: bolder;
+}

@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserService } from "../shared/service/user.service";
+import { AuthService } from "../shared/service/auth.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { NavbComponent } from "../navb/navb.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-connexion",
@@ -13,7 +14,11 @@ import { NavbComponent } from "../navb/navb.component";
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private app: UserService, private router: Router) {
+  constructor(
+    private app: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     this.loginForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
@@ -26,6 +31,7 @@ export class LoginComponent {
         this.router.navigate(["profil"]);
       },
       (error) => {
+        this.toastr.error("Mauvais credentials");
         console.log(error);
       }
     );

@@ -1,0 +1,20 @@
+.createEvent {
+  padding: 50px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.form-control {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 30px;
+  margin-right: 40px;
+  margin-left: 40px;
+  width: 100px;
+  height: 40px;
+}

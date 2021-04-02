@@ -1,1 +1,55 @@
-<p>event works!</p>
+<div id="title" class="text-center">
+  <h1>
+    Tournaments <i class="fa fa-caret-down" (click)="showTournaments()"></i>
+  </h1>
+</div>
+<div class="text-center" style="font-size: 50px">
+  <button class="logo" (click)="open('tournament')">
+    <i class="fa fa-plus fa-7x"></i>
+  </button>
+</div>
+<div class="container text-center" *ngIf="displayTournament">
+  <div class="card bg-light mb-4" *ngFor="let tournament of tournaments">
+    <div class="card-header text-center">Tournoi (nom jeu)</div>
+    <div class="card-body">
+      <p class="card-text">Specificity : {{ tournament.specificity }}</p>
+      <p class="card-text">Description : {{ tournament.description }}</p>
+      <p class="card-text">Conditions : {{ tournament.conditions }}</p>
+      <button
+        [disabled]="currentUser.id === tournament.idUser"
+        class="btn btn-secondary"
+        (click)="participateTournament(tournament.id)"
+      >
+        Participer
+      </button>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div id="titleChallegne" class="text-center">
+  <h1>Challenge <i class="fa fa-caret-down" (click)="showChallenges()"></i></h1>
+</div>
+<div class="text-center" style="font-size: 50px">
+  <button class="logo" (click)="open('challenge')">
+    <i class="fa fa-plus fa-7x"></i>
+  </button>
+</div>
+<div class="container text-center" *ngIf="displayChallenge">
+  <div class="card bg-light mb-4" *ngFor="let challenge of challenges">
+    <div class="card-header text-center">Challenge (nom jeu)</div>
+    <div class="card-body">
+      <p class="card-text">Specificity : {{ challenge.specificity }}</p>
+      <p class="card-text">Description : {{ challenge.description }}</p>
+      <p class="card-text">Conditions : {{ challenge.conditions }}</p>
+      <button
+        [disabled]="currentUser.id === challenge.idUser"
+        class="btn btn-secondary"
+        (click)="participateChallenge(challenge.id)"
+      >
+        Participer
+      </button>
+    </div>
+  </div>
+</div>

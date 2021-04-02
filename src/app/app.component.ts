@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "./shared/model/user.model";
-import { UserService } from "./shared/service/user.service";
+import { AuthService } from "./shared/service/auth.service";
 
 @Component({
   selector: "app-root",
@@ -12,5 +12,5 @@ export class AppComponent {
   title = "Kots-project";
   currentUser: User;
 
-  constructor(private userService: UserService) {}
+  constructor() {}
 }
