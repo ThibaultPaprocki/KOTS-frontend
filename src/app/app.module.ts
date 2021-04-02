@@ -15,6 +15,8 @@ import { ProfilComponent } from "./profil/profil.component";
 import { EventComponent } from "./event/event.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
+import { CreateEventModalComponent } from "./event/create-event-modal.component";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
     FourOhFourComponent,
     ProfilComponent,
     EventComponent,
+    CreateEventModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     [

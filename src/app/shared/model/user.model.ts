@@ -1,8 +1,9 @@
 export class User {
-  id: bigint;
+  id: number;
   username: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  mail?: string;
+  mail: string;
+  twitchLink: string;
+  youtubeLink: string;
+  description: string;
 }

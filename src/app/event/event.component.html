@@ -1,1 +1,63 @@
-<p>event works!</p>
+<div>
+  <div id="search">Barre de recherche</div>
+</div>
+
+<div id="title" class="text-center">
+  <h1>Tournaments</h1>
+</div>
+<div class="text-center" style="font-size: 60px">
+  <button (click)="open('tournament')">
+    <i class="fa fa-plus fa-7x"></i>
+  </button>
+</div>
+<div class="container text-center">
+  <div
+    class="card bg-light mb-3"
+    style="max-width: 18rem; display: inline-block"
+    *ngFor="let tournament of tournaments"
+  >
+    <div class="card-header text-center">Tournoi (nom jeu)</div>
+    <div class="card-body">
+      <p class="card-text">Specificity : {{ tournament.specificity }}</p>
+      <p class="card-text">Description : {{ tournament.description }}</p>
+      <p class="card-text">Conditions : {{ tournament.conditions }}</p>
+      <button
+        [disabled]="currentUser.id === tournament.idUser"
+        class="btn btn-secondary"
+        (click)="participateTournament(tournament.id)"
+      >
+        Participer
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="title" class="text-center">
+  <h1>Challenge</h1>
+</div>
+<div class="text-center" style="font-size: 60px">
+  <button (click)="open('challenge')">
+    <i class="fa fa-plus fa-7x"></i>
+  </button>
+</div>
+<div class="container text-center">
+  <div
+    class="card bg-light mb-3"
+    style="max-width: 20rem; display: inline-table"
+    *ngFor="let challenge of challenges"
+  >
+    <div class="card-header text-center">Challenge (nom jeu)</div>
+    <div class="card-body">
+      <p class="card-text">Specificity : {{ challenge.specificity }}</p>
+      <p class="card-text">Description : {{ challenge.description }}</p>
+      <p class="card-text">Conditions : {{ challenge.conditions }}</p>
+      <button
+        [disabled]="currentUser.id === challenge.idUser"
+        class="btn btn-secondary"
+        (click)="participateChallenge(challenge.id)"
+      >
+        Participer
+      </button>
+    </div>
+  </div>
+</div>

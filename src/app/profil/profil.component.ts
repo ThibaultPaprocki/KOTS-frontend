@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "../shared/service/user.service";
+import { AuthService } from "../shared/service/auth.service";
 import { User } from "../shared/model/user.model";
 
 @Component({
@@ -9,23 +9,10 @@ import { User } from "../shared/model/user.model";
 })
 export class ProfilComponent implements OnInit {
   currentUser: User;
-  displayUser: boolean = false;
 
-  constructor(private app: UserService) {
-    this.currentUser = this.app.currentUserValue;
+  constructor(private auth: AuthService) {
+    this.currentUser = this.auth.currentUserValue;
   }
 
-  ngOnInit(): void {
-    // this.user = new User();
-    // this.app.getCurrentUser().subscribe(
-    //   (user) => {
-    //     this.user = user;
-    //   },
-    //   (error) => console.log(error)
-    // );
-  }
-
-  display() {
-    this.displayUser = !this.displayUser;
-  }
+  ngOnInit(): void {}
 }
