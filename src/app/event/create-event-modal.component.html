@@ -1,10 +1,11 @@
-<div [formGroup]="eventForm" class="container text-center">
+<div [formGroup]="eventForm" class="container text-center createEvent">
   <div class="text-center">
     <h1>Create {{ type }}</h1>
   </div>
   <div>
     <div>
-      Specificity :<input
+      <h4>Specificity :</h4>
+      <input
         formControlName="specificity"
         type="text"
         class="form-control"
@@ -17,21 +18,22 @@
       </div>
     </div>
     <div>
-      Description :
-      <input
+      <h4>Description :</h4>
+      <textarea
         formControlName="description"
         type="text"
         class="form-control"
         id="description"
         placeholder="Description"
         required
-      />
+        aria-label="With textarea"
+      ></textarea>
       <div class="invalid-feedback" style="width: 100%">
         Your username is required.
       </div>
     </div>
     <div>
-      Conditions :
+      <h4>Conditions :</h4>
       <input
         formControlName="conditions"
         type="text"
@@ -49,12 +51,12 @@
         [disabled]="eventForm.invalid"
         (click)="createEvent()"
         type="submit"
-        class="btn btn-secondary"
+        class="btn btn-primary"
       >
-        Créer
+        Create
       </button>
-      <button (click)="dismiss()" type="submit" class="btn btn-secondary">
-        Annuler
+      <button (click)="dismiss()" type="submit" class="btn btn-danger">
+        Cancel
       </button>
     </div>
   </div>

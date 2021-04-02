@@ -9,7 +9,16 @@ ngb-carousel {
   background-position: center;
 }
 
+h3 {
+  color: white;
+  -webkit-text-stroke: 1px black; /* width and color */
+  font-weight: bold;
+  font-size: 35px;
+}
+
 p {
-  border-color: black;
+  color: white;
+  -webkit-text-stroke: 1px black; /* width and color */
+  font-size: 25px;
   font-weight: bold;
 }

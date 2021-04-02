@@ -1,5 +1,5 @@
 #logo {
-  height: 40px;
+  height: 60px;
 }
 
 ul {
@@ -13,7 +13,8 @@ ul {
 }
 
 a {
-  font-size: 1.2em;
+  font-size: 1.8em;
+  color: white;
 }
 
 .nav-link {

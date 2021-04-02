@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" class="container">
-  <h1 class="mb-3">Login</h1>
+  <h1 class="mb-3 text-center">Login</h1>
   <div class="mb-3">
-    <label for="username">Username</label>
+    <label for="username"><h3>Username</h3></label>
     <input
       formControlName="username"
       type="text"
@@ -16,7 +16,10 @@
   </div>
 
   <div class="mb-3">
-    <label for="password">Password<span class="text-muted"></span></label>
+    <label for="password"
+      ><h3>Password</h3>
+      <span class="text-muted"></span
+    ></label>
     <input
       formControlName="password"
       type="password"

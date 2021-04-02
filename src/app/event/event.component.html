@@ -1,21 +1,15 @@
-<div>
-  <div id="search">Barre de recherche</div>
-</div>
-
 <div id="title" class="text-center">
-  <h1>Tournaments</h1>
+  <h1>
+    Tournaments <i class="fa fa-caret-down" (click)="showTournaments()"></i>
+  </h1>
 </div>
-<div class="text-center" style="font-size: 60px">
-  <button (click)="open('tournament')">
+<div class="text-center" style="font-size: 50px">
+  <button class="logo" (click)="open('tournament')">
     <i class="fa fa-plus fa-7x"></i>
   </button>
 </div>
-<div class="container text-center">
-  <div
-    class="card bg-light mb-3"
-    style="max-width: 18rem; display: inline-block"
-    *ngFor="let tournament of tournaments"
-  >
+<div class="container text-center" *ngIf="displayTournament">
+  <div class="card bg-light mb-4" *ngFor="let tournament of tournaments">
     <div class="card-header text-center">Tournoi (nom jeu)</div>
     <div class="card-body">
       <p class="card-text">Specificity : {{ tournament.specificity }}</p>
@@ -32,20 +26,18 @@
   </div>
 </div>
 
-<div id="title" class="text-center">
-  <h1>Challenge</h1>
+<hr />
+
+<div id="titleChallegne" class="text-center">
+  <h1>Challenge <i class="fa fa-caret-down" (click)="showChallenges()"></i></h1>
 </div>
-<div class="text-center" style="font-size: 60px">
-  <button (click)="open('challenge')">
+<div class="text-center" style="font-size: 50px">
+  <button class="logo" (click)="open('challenge')">
     <i class="fa fa-plus fa-7x"></i>
   </button>
 </div>
-<div class="container text-center">
-  <div
-    class="card bg-light mb-3"
-    style="max-width: 20rem; display: inline-table"
-    *ngFor="let challenge of challenges"
-  >
+<div class="container text-center" *ngIf="displayChallenge">
+  <div class="card bg-light mb-4" *ngFor="let challenge of challenges">
     <div class="card-header text-center">Challenge (nom jeu)</div>
     <div class="card-body">
       <p class="card-text">Specificity : {{ challenge.specificity }}</p>

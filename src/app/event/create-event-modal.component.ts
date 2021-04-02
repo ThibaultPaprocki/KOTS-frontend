@@ -10,7 +10,7 @@ import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-create-event-modal",
   templateUrl: "./create-event-modal.component.html",
-  styleUrls: ["./event.component.css"],
+  styleUrls: ["./create-event-modal.component.css"],
 })
 export class CreateEventModalComponent {
   type: string;

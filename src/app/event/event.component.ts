@@ -17,6 +17,8 @@ export class EventComponent implements OnInit {
   tournaments: Event[];
   challenges: Event[];
   currentUser: User;
+  displayTournament: boolean = false;
+  displayChallenge: boolean = false;
 
   constructor(
     private eventService: EventService,
@@ -71,5 +73,13 @@ export class EventComponent implements OnInit {
         this.toastr.error("Register Event Error");
       }
     );
+  }
+
+  showTournaments() {
+    this.displayTournament = !this.displayTournament;
+  }
+
+  showChallenges() {
+    this.displayChallenge = !this.displayChallenge;
   }
 }
