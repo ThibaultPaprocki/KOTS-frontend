@@ -26,8 +26,6 @@ export class AuthService {
 
   register(request: UserRequest) {
     return this.httpClient.post(environment.url + "register", request);
-    // ToDo
-    // login automatique souhaitable juste après le register
   }
 
   login(request: UserRequest) {

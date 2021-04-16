@@ -8,15 +8,25 @@ ul {
 
 .navbar {
   height: 80px;
-  background-color: rgba(80, 79, 78, 0.5);
+  background-color: rgba(80, 79, 78, 0.9);
   flex-shrink: 0;
 }
 
 a {
-  font-size: 1.8em;
+  font-size: 1.1em;
   color: white;
 }
 
 .nav-link {
   display: initial;
+}
+.nav-link:hover {
+  color: blue;
+}
+
+.logout {
+  cursor: pointer;
+}
+.logout:hover {
+  color: red;
 }

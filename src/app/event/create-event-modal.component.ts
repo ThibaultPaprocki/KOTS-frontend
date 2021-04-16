@@ -1,4 +1,8 @@
-import { ChangeDetectorRef, Component } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from "@angular/core";
 import { EventService } from "../shared/service/event.service";
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -21,8 +25,7 @@ export class CreateEventModalComponent {
     private eventService: EventService,
     private authService: AuthService,
     private activeModal: NgbActiveModal,
-    private toastr: ToastrService,
-    private ref: ChangeDetectorRef
+    private toastr: ToastrService
   ) {
     this.currentUser = this.authService.currentUserValue;
   }
@@ -50,7 +53,7 @@ export class CreateEventModalComponent {
       this.eventService.createTournament(request).subscribe(
         () => {
           this.activeModal.dismiss();
-          this.ref.detectChanges();
+          location.reload();
         },
         (error) => {
           this.toastr.error(error);
@@ -60,7 +63,7 @@ export class CreateEventModalComponent {
       this.eventService.createChallenge(request).subscribe(
         () => {
           this.activeModal.dismiss();
-          this.ref.detectChanges();
+          location.reload();
         },
         (error) => {
           this.toastr.error(error);

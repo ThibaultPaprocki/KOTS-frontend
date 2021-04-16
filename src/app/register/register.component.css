@@ -1,12 +1,26 @@
 h1 {
-  color: white;
-  -webkit-text-stroke: 1px black; /* width and color */
+  color: #343a40;
+  -webkit-text-stroke: 1px white; /* width and color */
   font-weight: bolder;
 }
 
 h3 {
-  color: white;
-  -webkit-text-stroke: 1px black; /* width and color */
+  color: #343a40;
+  -webkit-text-stroke: 1px white; /* width and color */
   font-size: 30px;
   font-weight: bolder;
+}
+
+#form {
+  width: 300px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btn {
+  margin-top: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

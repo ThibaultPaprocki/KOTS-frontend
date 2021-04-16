@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from "@angular/core";
 import { EventService } from "../shared/service/event.service";
 import { Event } from "../shared/model/event.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -12,13 +17,14 @@ import { ToastrService } from "ngx-toastr";
   selector: "app-event",
   templateUrl: "./event.component.html",
   styleUrls: ["./event.component.css"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class EventComponent implements OnInit {
   tournaments: Event[];
   challenges: Event[];
   currentUser: User;
-  displayTournament: boolean = false;
-  displayChallenge: boolean = false;
+  displayTournament: boolean = true;
+  displayChallenge: boolean = true;
 
   constructor(
     private eventService: EventService,
@@ -42,7 +48,6 @@ export class EventComponent implements OnInit {
   open(event: string) {
     const modalRef = this.modalService.open(CreateEventModalComponent);
     (modalRef.componentInstance as CreateEventModalComponent).init(event);
-    this.ref.detectChanges();
   }
 
   participateTournament(idTournament: number) {
@@ -52,7 +57,7 @@ export class EventComponent implements OnInit {
     };
     this.eventService.registerTournament(request).subscribe(
       () => {
-        this.ref.detectChanges();
+        location.reload();
       },
       (error) => {
         this.toastr.error("Register Event Error");
@@ -67,7 +72,7 @@ export class EventComponent implements OnInit {
     };
     this.eventService.registerChallenge(request).subscribe(
       () => {
-        this.ref.detectChanges();
+        location.reload();
       },
       (error) => {
         this.toastr.error("Register Event Error");

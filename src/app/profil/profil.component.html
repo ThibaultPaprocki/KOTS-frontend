@@ -1,9 +1,79 @@
-<div class="card bg-light mb-3 container" style="max-width: 18rem">
-  <div class="card-header text-center">{{ currentUser.username }}</div>
+<div
+  [formGroup]="updateProfil"
+  class="card bg-light mb-3 container"
+  style="max-width: 25rem"
+>
+  <div class="card-header text-center" style="font-size: 2em">
+    {{ currentUser.username }}
+  </div>
   <div class="card-body">
-    <p class="card-text">Mail : {{ currentUser.mail }}</p>
-    <p class="card-text">Id : {{ currentUser.id }}</p>
-    <p class="card-text">FirstName :</p>
-    <p class="card-text">LastName :</p>
+    <p class="card-text">
+      Id :<input
+        type="text"
+        class="form-control"
+        id="id"
+        placeholder="{{ currentUser.id }}"
+        disabled
+      />
+    </p>
+    <p class="card-text">
+      Password :
+      <input
+        formControlName="password"
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="{{ currentUser.password }}"
+        required=""
+      />
+    </p>
+    <p class="card-text">
+      Mail :<input
+        formControlName="mail"
+        type="text"
+        class="form-control"
+        id="mail"
+        placeholder="{{ currentUser.mail }}"
+        required=""
+      />
+    </p>
+    <p class="card-text">
+      Description :<input
+        formControlName="description"
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="{{ currentUser.description }}"
+        required=""
+      />
+    </p>
+    <p class="card-text">
+      Twitch Account :<input
+        formControlName="twitchLink"
+        type="text"
+        class="form-control"
+        id="twitchLink"
+        placeholder="{{ currentUser.twitchLink }}"
+        required=""
+      />
+    </p>
+    <p class="card-text mb-3">
+      Youtube Account :<input
+        formControlName="youtubeLink"
+        type="text"
+        class="form-control"
+        id="youtubeLink"
+        placeholder="{{ currentUser.youtubeLink }}"
+        required=""
+      />
+    </p>
+    <button
+      disabled
+      (click)="updateUser()"
+      class="btn btn-primary btn-lg btn-block"
+      type="submit"
+    >
+      Update
+    </button>
   </div>
 </div>

@@ -1,43 +1,45 @@
 <form [formGroup]="loginForm" class="container">
-  <h1 class="mb-3 text-center">Login</h1>
-  <div class="mb-3">
-    <label for="username"><h3>Username</h3></label>
-    <input
-      formControlName="username"
-      type="text"
-      class="form-control"
-      id="username"
-      placeholder="Username"
-      required=""
-    />
-    <div class="invalid-feedback" style="width: 100%">
-      Your username is required.
+  <div id="form">
+    <h1 class="mb-3 text-center">Login</h1>
+    <div class="mb-3">
+      <label for="username"><h3>Username</h3></label>
+      <input
+        formControlName="username"
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Username"
+        required=""
+      />
+      <div class="invalid-feedback" style="width: 100%">
+        Your username is required.
+      </div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="password"
-      ><h3>Password</h3>
-      <span class="text-muted"></span
-    ></label>
-    <input
-      formControlName="password"
-      type="password"
-      class="form-control"
-      id="password"
-      placeholder="Password"
-    />
-    <div class="invalid-feedback">
-      Please enter a valid username and password to connect.
+    <div class="mb-3">
+      <label for="password"
+        ><h3>Password</h3>
+        <span class="text-muted"></span
+      ></label>
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+      <div class="invalid-feedback">
+        Please enter a valid username and password to connect.
+      </div>
     </div>
-  </div>
 
-  <button
-    [disabled]="loginForm.invalid"
-    class="btn btn-primary btn-lg btn-block"
-    type="submit"
-    (click)="login()"
-  >
-    Connect
-  </button>
+    <button
+      [disabled]="loginForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+      (click)="login()"
+    >
+      Connect
+    </button>
+  </div>
 </form>

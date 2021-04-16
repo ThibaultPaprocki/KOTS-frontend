@@ -1,6 +1,7 @@
 h1 {
-  color: white;
-  -webkit-text-stroke: 1px black; /* width and color */
+  color: #343a40;
+
+  -webkit-text-stroke: 1px white; /* width and color */
   font-weight: bolder;
 }
 
@@ -14,11 +15,18 @@ h1 {
 
 hr {
   width: 1000px;
-  color: black;
+  color: #343a40;
 }
 
 .logo {
   width: 80px;
   height: 80px;
   margin-bottom: 30px;
+  font-size: 0.4em;
+  background-color: #343a40;
+  color: white;
+}
+
+.event-show {
+  cursor: pointer;
 }
