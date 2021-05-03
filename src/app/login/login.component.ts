@@ -31,7 +31,7 @@ export class LoginComponent {
         this.router.navigate(["profil"]);
       },
       (error) => {
-        this.toastr.error("Mauvais credentials");
+        this.toastr.error("Bad credentials");
         console.log(error);
       }
     );

@@ -3,7 +3,7 @@ export class User {
   username: string;
   password: string;
   mail: string;
-  twitchLink: string;
-  youtubeLink: string;
+  twitch: string;
+  youtube: string;
   description: string;
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../shared/service/auth.service";
 import { User } from "../shared/model/user.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../shared/service/user.service";
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-profil",
@@ -11,19 +14,61 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class ProfilComponent implements OnInit {
   currentUser: User;
   updateProfil: FormGroup;
+  loginForm: FormGroup;
 
-  constructor(private auth: AuthService) {
+  constructor(
+    private auth: AuthService,
+    private userService: UserService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.currentUser = this.auth.currentUserValue;
     this.updateProfil = new FormGroup({
-      password: new FormControl("", [Validators.required]),
       mail: new FormControl("", [Validators.email]),
       description: new FormControl("", [Validators.required]),
-      twitchLink: new FormControl("", [Validators.required]),
-      youtubeLink: new FormControl("", [Validators.required]),
+      twitch: new FormControl("", [Validators.required]),
+      youtube: new FormControl("", [Validators.required]),
+    });
+
+    this.loginForm = new FormGroup({
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.updateProfil.setValue({
+      mail: this.currentUser.mail,
+      description: this.currentUser.description,
+      twitch: this.currentUser.twitch,
+      youtube: this.currentUser.youtube,
+    });
 
-  updateUser() {}
+    this.loginForm.setValue({
+      username: this.currentUser.username,
+      password: this.currentUser.password,
+    });
+  }
+
+  updateUser() {
+    this.userService.updateUser(this.updateProfil.value).subscribe(
+      () => {
+        this.auth.logout();
+        this.auth.login(this.loginForm.value).subscribe(
+          () => {
+            this.router.navigate(["profil"]);
+          },
+          (error) => {
+            this.toastr.error("Updating Profil Error");
+            console.log(error);
+          }
+        );
+        location.reload();
+      },
+      (error) => {
+        this.toastr.error("Updating Profil Error");
+        console.log(error);
+      }
+    );
+  }
 }

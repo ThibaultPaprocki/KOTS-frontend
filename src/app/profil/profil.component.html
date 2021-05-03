@@ -18,14 +18,7 @@
     </p>
     <p class="card-text">
       Password :
-      <input
-        formControlName="password"
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="{{ currentUser.password }}"
-        required=""
-      />
+      <input type="text" class="form-control" id="username" disabled />
     </p>
     <p class="card-text">
       Mail :<input
@@ -49,26 +42,25 @@
     </p>
     <p class="card-text">
       Twitch Account :<input
-        formControlName="twitchLink"
+        formControlName="twitch"
         type="text"
         class="form-control"
-        id="twitchLink"
-        placeholder="{{ currentUser.twitchLink }}"
+        id="twitch"
+        placeholder="{{ currentUser.twitch }}"
         required=""
       />
     </p>
     <p class="card-text mb-3">
       Youtube Account :<input
-        formControlName="youtubeLink"
+        formControlName="youtube"
         type="text"
         class="form-control"
-        id="youtubeLink"
-        placeholder="{{ currentUser.youtubeLink }}"
+        id="youtube"
+        placeholder="{{ currentUser.youtube }}"
         required=""
       />
     </p>
     <button
-      disabled
       (click)="updateUser()"
       class="btn btn-primary btn-lg btn-block"
       type="submit"
