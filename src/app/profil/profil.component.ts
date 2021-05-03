@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 export class ProfilComponent implements OnInit {
   currentUser: User;
   updateProfil: FormGroup;
-  loginForm: FormGroup;
+  //loginForm: FormGroup;
 
   constructor(
     private auth: AuthService,
@@ -30,10 +30,10 @@ export class ProfilComponent implements OnInit {
       youtube: new FormControl("", [Validators.required]),
     });
 
-    this.loginForm = new FormGroup({
-      username: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
-    });
+    // this.loginForm = new FormGroup({
+    //   username: new FormControl("", [Validators.required]),
+    //   password: new FormControl("", [Validators.required]),
+    // });
   }
 
   ngOnInit(): void {
@@ -44,25 +44,26 @@ export class ProfilComponent implements OnInit {
       youtube: this.currentUser.youtube,
     });
 
-    this.loginForm.setValue({
-      username: this.currentUser.username,
-      password: this.currentUser.password,
-    });
+    // this.loginForm.setValue({
+    //   username: this.currentUser.username,
+    //   password: this.currentUser.password,
+    // });
   }
 
   updateUser() {
     this.userService.updateUser(this.updateProfil.value).subscribe(
       () => {
         this.auth.logout();
-        this.auth.login(this.loginForm.value).subscribe(
-          () => {
-            this.router.navigate(["profil"]);
-          },
-          (error) => {
-            this.toastr.error("Updating Profil Error");
-            console.log(error);
-          }
-        );
+        // this.auth.login(this.loginForm.value).subscribe(
+        //   () => {
+        //     this.router.navigate(["profil"]);
+        //   },
+        //   (error) => {
+        //     this.toastr.error("Updating Profil Error");
+        //     console.log(error);
+        //   }
+        // );
+        this.router.navigate(["login"]);
         location.reload();
       },
       (error) => {
