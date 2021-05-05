@@ -5,3 +5,23 @@
 .card {
   color: white;
 }
+
+.passwordCancel {
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.passwordValidate {
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+}
+
+i {
+  cursor: pointer;
+}
+
+i:active {
+  color: blue;
+}

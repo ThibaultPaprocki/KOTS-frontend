@@ -14,6 +14,9 @@ import { Router } from "@angular/router";
 export class ProfilComponent implements OnInit {
   currentUser: User;
   updateProfil: FormGroup;
+  updPassword: FormGroup;
+  //password: string;
+  updating: boolean = false;
   //loginForm: FormGroup;
 
   constructor(
@@ -23,6 +26,10 @@ export class ProfilComponent implements OnInit {
     private router: Router
   ) {
     this.currentUser = this.auth.currentUserValue;
+    this.updPassword = new FormGroup({
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
+    });
     this.updateProfil = new FormGroup({
       mail: new FormControl("", [Validators.email]),
       description: new FormControl("", [Validators.required]),
@@ -43,11 +50,10 @@ export class ProfilComponent implements OnInit {
       twitch: this.currentUser.twitch,
       youtube: this.currentUser.youtube,
     });
-
-    // this.loginForm.setValue({
-    //   username: this.currentUser.username,
-    //   password: this.currentUser.password,
-    // });
+    this.updPassword.setValue({
+      username: this.currentUser.username,
+      password: "EDIT",
+    });
   }
 
   updateUser() {
@@ -71,5 +77,27 @@ export class ProfilComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  updatePassword() {
+    this.userService.updatePassword(this.updPassword.value).subscribe(
+      (data) => {
+        if (data) {
+          this.auth.logout();
+          this.router.navigate(["login"]);
+          location.reload();
+        } else {
+          this.toastr.error("Password already exists");
+        }
+      },
+      (error) => {
+        this.toastr.error("Updating Password error");
+        console.log(error);
+      }
+    );
+  }
+
+  updatingPassword() {
+    this.updating = !this.updating;
   }
 }

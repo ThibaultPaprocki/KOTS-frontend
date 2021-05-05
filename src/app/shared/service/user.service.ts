@@ -12,4 +12,8 @@ export class UserService {
   updateUser(request: ProfilRequest) {
     return this.httpClient.put(environment.url + "update", request);
   }
+
+  updatePassword(request: ProfilRequest) {
+    return this.httpClient.put<boolean>(environment.url + "password", request);
+  }
 }

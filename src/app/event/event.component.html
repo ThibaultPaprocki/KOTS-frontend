@@ -29,7 +29,7 @@
         <button
           *ngIf="currentUser.id != tournament.idUser"
           class="btn btn-success"
-          (click)="participateTournament(tournament.id)"
+          (click)="sendLink()"
         >
           Participate
         </button>
@@ -77,7 +77,7 @@
       <button
         *ngIf="currentUser.id != challenge.idUser"
         class="btn btn-success"
-        (click)="participateChallenge(challenge.id)"
+        (click)="sendLink()"
       >
         Participate
       </button>
@@ -91,3 +91,4 @@
     </div>
   </div>
 </div>
+<!-- "participateChallenge(challenge.id)" -->

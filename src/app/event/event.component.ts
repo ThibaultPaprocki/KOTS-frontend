@@ -12,6 +12,7 @@ import { User } from "../shared/model/user.model";
 import { AuthService } from "../shared/service/auth.service";
 import { ParticipateEventRequest } from "../shared/model/participate-event.request";
 import { ToastrService } from "ngx-toastr";
+import { RegisterEventModalComponent } from "./register-event-modal";
 
 @Component({
   selector: "app-event",
@@ -48,6 +49,11 @@ export class EventComponent implements OnInit {
   open(event: string) {
     const modalRef = this.modalService.open(CreateEventModalComponent);
     (modalRef.componentInstance as CreateEventModalComponent).init(event);
+  }
+
+  sendLink() {
+    const modalRef = this.modalService.open(RegisterEventModalComponent);
+    (modalRef.componentInstance as RegisterEventModalComponent).init();
   }
 
   participateTournament(idTournament: number) {

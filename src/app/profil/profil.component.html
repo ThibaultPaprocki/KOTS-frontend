@@ -7,19 +7,32 @@
     {{ currentUser.username }}
   </div>
   <div class="card-body">
-    <p class="card-text">
-      Id :<input
+    <p class="card-text" [formGroup]="updPassword">
+      Password : <i class="fa fa-edit" (click)="updatingPassword()"></i>
+      <input
         type="text"
         class="form-control"
-        id="id"
-        placeholder="{{ currentUser.id }}"
-        disabled
+        formControlName="password"
+        id="username"
+        [disabled]="!updating"
       />
+      <button
+        class="btn btn-danger passwordCancel"
+        (click)="updating = false"
+        *ngIf="updating"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary passwordValidate"
+        (click)="updatePassword()"
+        [disabled]="updPassword.invalid"
+        *ngIf="updating"
+      >
+        Validate Password
+      </button>
     </p>
-    <p class="card-text">
-      Password :
-      <input type="text" class="form-control" id="username" disabled />
-    </p>
+
     <p class="card-text">
       Mail :<input
         formControlName="mail"
