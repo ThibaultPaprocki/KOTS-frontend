@@ -16,17 +16,37 @@ export class RegisterEventModalComponent {
   type: string;
   eventForm: FormGroup;
   currentUser: User;
+  idUser: number;
+  idEvent: number;
 
   constructor(
     private eventService: EventService,
-    private authService: AuthService,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService
-  ) {
-    this.currentUser = this.authService.currentUserValue;
+  ) {}
+
+  init(idUser: number, idEvent: number) {
+    this.idUser = idUser;
+    this.idEvent = idEvent;
+    this.eventForm = new FormGroup({
+      urlVideo: new FormControl(undefined, Validators.required),
+      timer: new FormControl(undefined, Validators.required),
+    });
   }
 
-  init() {}
+  sendLink() {
+    // const playerRequest: Player = {
+    //   idUser: this.idUser,
+    //   idEvent: this.idEvent,
+    //   urlVideo: this.eventForm.get("urlVideo").value,
+    //   timer: this.eventForm.get("timer").value,
+    // };
+    //this.eventService.sendPlayerLink(playerRequest).subscribe(
+    // ()=>{
+    //   this.toastr.success("Participation send. Wait a validation from the admin.");
+    //   this.dismiss();
+    // });
+  }
 
   dismiss() {
     this.activeModal.dismiss();

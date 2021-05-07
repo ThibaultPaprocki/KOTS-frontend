@@ -16,6 +16,7 @@ export class ProfilComponent implements OnInit {
   updateProfil: FormGroup;
   updPassword: FormGroup;
   //password: string;
+  show: boolean = false;
   updating: boolean = false;
   //loginForm: FormGroup;
 
@@ -52,7 +53,7 @@ export class ProfilComponent implements OnInit {
     });
     this.updPassword.setValue({
       username: this.currentUser.username,
-      password: "EDIT",
+      password: "",
     });
   }
 
@@ -99,5 +100,9 @@ export class ProfilComponent implements OnInit {
 
   updatingPassword() {
     this.updating = !this.updating;
+  }
+
+  showPassword() {
+    this.show = !this.show;
   }
 }

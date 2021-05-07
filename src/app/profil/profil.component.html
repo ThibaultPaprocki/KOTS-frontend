@@ -7,31 +7,36 @@
     {{ currentUser.username }}
   </div>
   <div class="card-body">
-    <p class="card-text" [formGroup]="updPassword">
-      Password : <i class="fa fa-edit" (click)="updatingPassword()"></i>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="password"
-        id="username"
-        [disabled]="!updating"
-      />
-      <button
-        class="btn btn-danger passwordCancel"
-        (click)="updating = false"
-        *ngIf="updating"
-      >
-        Cancel
-      </button>
-      <button
-        class="btn btn-primary passwordValidate"
-        (click)="updatePassword()"
-        [disabled]="updPassword.invalid"
-        *ngIf="updating"
-      >
-        Validate Password
-      </button>
-    </p>
+    <div class="card-text password" [formGroup]="updPassword">
+      Password :
+      <i class="fa fa-edit" (click)="updatingPassword()"></i>
+      <div class="password">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          id="username"
+          [disabled]="updating"
+        />
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-danger passwordCancel"
+          (click)="updatingPassword()"
+          *ngIf="updating"
+        >
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary passwordValidate"
+          (click)="updatePassword()"
+          [disabled]="updPassword.invalid"
+          *ngIf="updating"
+        >
+          Validate Password
+        </button>
+      </div>
+    </div>
 
     <p class="card-text">
       Mail :<input

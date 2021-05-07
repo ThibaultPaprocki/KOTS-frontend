@@ -1,10 +1,38 @@
-<div class="container">
+<div class="container options" [formGroup]="eventForm">
   <div>
-    <h2>Send us your video link to register to the event</h2>
-    <input type="text" />
+    <div class="link">
+      <p>Send us your video link to register to the event</p>
+      <input type="url" class="form-control" formControlName="urlVideo" />
+      <div class="invalid-feedback">A link is required.</div>
+    </div>
+    <div class="mb-3">
+      <p>Write your timer</p>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Format hh:mm:ss"
+        formControlName="timer"
+      />
+
+      <div class="invalid-feedback">Your timer is required.</div>
+    </div>
   </div>
-  <button (click)="dismiss()" type="submit" class="btn btn-danger">
-    Cancel
-  </button>
-  <button type="submit" class="btn btn-primary">Create</button>
+
+  <div class="row text-center options">
+    <div class="col-6">
+      <button (click)="dismiss()" type="submit" class="btn btn-danger">
+        Cancel
+      </button>
+    </div>
+    <div class="col-6">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="sendLink()"
+        [disabled]=""
+      >
+        Send
+      </button>
+    </div>
+  </div>
 </div>

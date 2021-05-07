@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../shared/service/auth.service";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { UserRequest } from "../shared/model/user.request";
 
 @Component({
   selector: "app-inscription",
@@ -11,25 +12,36 @@ import { ToastrService } from "ngx-toastr";
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  fieldTextType: boolean;
+  fieldTextType2: boolean;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.registerForm = new FormGroup({
-      username: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
-      mail: new FormControl("", [Validators.email]),
-    });
+    this.registerForm = new FormGroup(
+      {
+        username: new FormControl("", [Validators.required]),
+        password: new FormControl("", [Validators.required]),
+        confirmedPassword: new FormControl("", [Validators.required]),
+        mail: new FormControl("", [Validators.email]),
+      },
+      { validators: this.checkPasswords }
+    );
   }
 
   ngOnInit(): void {}
 
   registerUser(): void {
-    this.authService.register(this.registerForm.value).subscribe(
+    const request: UserRequest = {
+      username: this.registerForm.get("username").value,
+      password: this.registerForm.get("password").value,
+      mail: this.registerForm.get("mail").value,
+    };
+    this.authService.register(request).subscribe(
       () => {
-        this.authService.login(this.registerForm.value).subscribe(
+        this.authService.login(request).subscribe(
           () => {
             this.router.navigate(["profil"]);
           },
@@ -44,5 +56,20 @@ export class RegisterComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextType2() {
+    this.fieldTextType2 = !this.fieldTextType2;
+  }
+
+  checkPasswords(group: FormGroup) {
+    // here we have the 'passwords' group
+    const password = group.get("password").value;
+    const confirmedPassword = group.get("confirmedPassword").value;
+
+    return password === confirmedPassword ? null : { notSame: true };
   }
 }

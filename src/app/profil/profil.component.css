@@ -7,14 +7,10 @@
 }
 
 .passwordCancel {
-  align-items: center;
-  text-align: center;
   margin-right: 10px;
 }
 
 .passwordValidate {
-  align-items: center;
-  text-align: center;
   margin-left: 10px;
 }
 
@@ -24,4 +20,8 @@ i {
 
 i:active {
   color: blue;
+}
+
+.password {
+  padding-bottom: 10px;
 }
