@@ -18,6 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
 import { CreateEventModalComponent } from "./event/create-event-modal.component";
 import { ToastrModule } from "ngx-toastr";
+import { ControlSpeedrunComponent } from './control-speedrun/control-speedrun.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ToastrModule } from "ngx-toastr";
     ProfilComponent,
     EventComponent,
     CreateEventModalComponent,
+    ControlSpeedrunComponent,
   ],
   imports: [
     BrowserModule,
