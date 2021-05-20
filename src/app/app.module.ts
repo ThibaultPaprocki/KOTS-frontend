@@ -19,6 +19,7 @@ import { HttpRequestInterceptor } from "./shared/auth/http.request.interceptor";
 import { CreateEventModalComponent } from "./event/create-event-modal.component";
 import { ToastrModule } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./event/register-event-modal.component";
+import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RegisterEventModalComponent } from "./event/register-event-modal.compon
     EventComponent,
     CreateEventModalComponent,
     RegisterEventModalComponent,
+    ControlSpeedrunComponent,
   ],
   imports: [
     BrowserModule,
