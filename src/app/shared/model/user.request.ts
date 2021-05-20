@@ -1,5 +1,5 @@
 export interface UserRequest {
   username: string;
   password: string;
-  mail?: string;
+  mail: string;
 }

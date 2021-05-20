@@ -30,3 +30,7 @@ hr {
 .event-show {
   cursor: pointer;
 }
+
+#cardEvent {
+  height: 250px;
+}

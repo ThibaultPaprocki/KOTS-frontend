@@ -12,6 +12,7 @@
       <i class="fa fa-edit" (click)="updatingPassword()"></i>
       <div class="password">
         <input
+          #pswd
           type="password"
           class="form-control"
           formControlName="password"
@@ -78,12 +79,10 @@
         required=""
       />
     </p>
-    <button
-      (click)="updateUser()"
-      class="btn btn-primary btn-lg btn-block"
-      type="submit"
-    >
-      Update
-    </button>
+    <div class="text-center">
+      <button (click)="updateUser()" class="btn btn-primary" type="submit">
+        Update
+      </button>
+    </div>
   </div>
 </div>

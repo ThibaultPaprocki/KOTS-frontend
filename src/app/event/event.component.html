@@ -11,7 +11,7 @@
   </h1>
 </div>
 
-<div class="container-fluid text-center" *ngIf="displayTournament">
+<div class="container-fluid" *ngIf="displayTournament">
   <div class="text-center" style="font-size: 50px">
     <button class="logo" (click)="open('tournament')" ngDoCheck>Create</button>
   </div>
@@ -20,12 +20,16 @@
     *ngFor="let tournament of tournaments"
     style="color: white"
   >
-    <div>
-      <div class="card-header text-center">Tournoi (nom jeu)</div>
-      <div class="card-body">
-        <p class="card-text">Specificity : {{ tournament.specificity }}</p>
-        <p class="card-text">Description : {{ tournament.description }}</p>
-        <p class="card-text">Conditions : {{ tournament.conditions }}</p>
+    <div class="">
+      <div id="cardEvent">
+        <div class="card-header text-center">Tournoi (nom jeu)</div>
+        <div class="card-body ">
+          <p class="card-text">Specificity : {{ tournament.specificity }}</p>
+          <p class="card-text">Description : {{ tournament.description }}</p>
+          <p class="card-text">Conditions : {{ tournament.conditions }}</p>
+        </div>
+      </div>
+      <div class="text-center">
         <button
           *ngIf="currentUser.id != tournament.idUser"
           class="btn btn-success"
@@ -69,26 +73,28 @@
     *ngFor="let challenge of challenges"
     style="color: white"
   >
-    <div class="card-header text-center">Challenge (nom jeu)</div>
-    <div class="card-body">
-      <p class="card-text">Specificity : {{ challenge.specificity }}</p>
-      <p class="card-text">Description : {{ challenge.description }}</p>
-      <p class="card-text">Conditions : {{ challenge.conditions }}</p>
-      <button
-        *ngIf="currentUser.id != challenge.idUser"
-        class="btn btn-success"
-        (click)="sendLink(challenge.id)"
-      >
-        Participate
-      </button>
-      <button
-        *ngIf="currentUser.id === challenge.idUser"
-        class="btn btn-secondary"
-        disabled
-      >
-        You already participate in this challenge
-      </button>
+    <div id="cardEvent">
+      <div class="card-header text-center">Challenge (nom jeu)</div>
+      <div class="card-body">
+        <p class="card-text">Specificity : {{ challenge.specificity }}</p>
+        <p class="card-text">Description : {{ challenge.description }}</p>
+        <p class="card-text">Conditions : {{ challenge.conditions }}</p>
+      </div>
     </div>
+    <button
+      *ngIf="currentUser.id != challenge.idUser"
+      class="btn btn-success"
+      (click)="sendLink(challenge.id)"
+    >
+      Participate
+    </button>
+    <button
+      *ngIf="currentUser.id === challenge.idUser"
+      class="btn btn-secondary"
+      disabled
+    >
+      You already participate in this challenge
+    </button>
   </div>
 </div>
 <!-- "participateChallenge(challenge.id)" -->

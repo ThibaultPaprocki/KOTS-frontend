@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { AuthService } from "../shared/service/auth.service";
 import { User } from "../shared/model/user.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../shared/service/user.service";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
+import { disableDebugTools } from "@angular/platform-browser";
 
 @Component({
   selector: "app-profil",
@@ -19,6 +20,9 @@ export class ProfilComponent implements OnInit {
   show: boolean = false;
   updating: boolean = false;
   //loginForm: FormGroup;
+
+  @ViewChild("pswd")
+  private editPassword!: ElementRef;
 
   constructor(
     private auth: AuthService,
@@ -42,6 +46,7 @@ export class ProfilComponent implements OnInit {
     //   username: new FormControl("", [Validators.required]),
     //   password: new FormControl("", [Validators.required]),
     // });
+    this.updating = false;
   }
 
   ngOnInit(): void {
@@ -100,6 +105,7 @@ export class ProfilComponent implements OnInit {
 
   updatingPassword() {
     this.updating = !this.updating;
+    // document.getElementById(this.editPassword).disabled = this.updating;
   }
 
   showPassword() {
