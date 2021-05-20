@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../shared/model/user.model';
+import { Player } from 'src/app/shared/model/players.model';
+import { User } from '../../shared/model/user.model';
 
 @Component({
   selector: 'app-control-speedrun',
@@ -8,11 +9,17 @@ import { User } from '../shared/model/user.model';
 })
 export class ControlSpeedrunComponent implements OnInit {
 
-  players: User[];
+  players: Player[];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.players = this.getPlayers();
+  }
+
+  getPlayers(): Player[] {
+    
+    return [{ id: 3, timer: "2:45", url_youtube: "cxjklvds" }];
   }
 
 }
