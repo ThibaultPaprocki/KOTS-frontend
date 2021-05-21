@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  /*background-image: url("assets/images/bg2.png");*/
-  background-repeat: repeat;
+  background-image: url("assets/images/windowsXp.jpeg");
+  /* background-repeat:; */
   background-attachment: fixed;
-  background-position: right;
+  /* background-position: center; */
+  background-size: cover;
 }
 
 html,

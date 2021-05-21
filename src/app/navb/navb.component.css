@@ -20,13 +20,13 @@ a {
 .nav-link {
   display: initial;
 }
-.nav-link:hover {
+.nav-link:active {
   color: blue;
 }
 
 .logout {
   cursor: pointer;
 }
-.logout:hover {
+.logout:active {
   color: red;
 }

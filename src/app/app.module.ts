@@ -20,6 +20,7 @@ import { CreateEventModalComponent } from "./event/create-event-modal.component"
 import { ToastrModule } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./event/register-event-modal.component";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
+import { SanitizeHtmlPipe } from "./tool/pipe.component";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speed
     CreateEventModalComponent,
     RegisterEventModalComponent,
     ControlSpeedrunComponent,
+    SanitizeHtmlPipe,
   ],
   imports: [
     BrowserModule,

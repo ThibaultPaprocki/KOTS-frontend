@@ -18,6 +18,6 @@ export class UserService {
   }
 
   getUsername(idUser: number) {
-    return this.httpClient.get<string>(`${environment.url}/username${idUser}`);
+    return this.httpClient.get<string>(`${environment.url}username${idUser}`);
   }
 }

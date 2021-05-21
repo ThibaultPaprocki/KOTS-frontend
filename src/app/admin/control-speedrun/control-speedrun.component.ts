@@ -13,16 +13,17 @@ import { User } from "../../shared/model/user.model";
 export class ControlSpeedrunComponent implements OnInit {
   players: Player[];
   user: User;
+  indexClick: number;
 
   constructor(
     private userService: UserService,
     private eventService: EventService
   ) {
-    this.getPlayers(1);
+    this.getPlayers(2);
   }
 
   ngOnInit(): void {
-    this.getPlayers(1);
+    this.getPlayers(2);
   }
 
   getPlayers(idEvent: number) {
@@ -32,9 +33,11 @@ export class ControlSpeedrunComponent implements OnInit {
   }
 
   getUsername(idUser: number): string {
-    // let username: string;
-    // this.userService.getUsername(idUser).subscribe((name) => (username = name));
-    return "toto";
+    this.userService.getUsername(idUser).subscribe((name) => {
+      console.log("name : " + name);
+      return name;
+    });
+    return undefined;
   }
 
   validate(idUser: number, idEvent: number, validation: boolean) {
@@ -46,5 +49,9 @@ export class ControlSpeedrunComponent implements OnInit {
 
     // this.eventService.validateTournament(validateRun).subscribe();
     // this.eventService.validateChallenge(validateRun).subscribe();
+  }
+
+  selectPlayer(index: number) {
+    this.indexClick = index;
   }
 }

@@ -13,7 +13,13 @@
 
 <div class="container-fluid" *ngIf="displayTournament">
   <div class="text-center" style="font-size: 50px">
-    <button class="logo" (click)="open('tournament')" ngDoCheck>Create</button>
+    <button
+      class="logo btn btn-secondary"
+      (click)="open('tournament')"
+      ngDoCheck
+    >
+      Create
+    </button>
   </div>
   <div
     class="card bg-dark mb-4"
@@ -66,7 +72,9 @@
 
 <div class="container-fluid text-center" *ngIf="displayChallenge">
   <div class="text-center" style="font-size: 50px">
-    <button class="logo" (click)="open('challenge')">Create</button>
+    <button class="logo btn btn-secondary" (click)="open('challenge')">
+      Create
+    </button>
   </div>
   <div
     class="card bg-dark mb-4"

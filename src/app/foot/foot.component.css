@@ -28,7 +28,7 @@ footer {
 .site-footer a {
   color: #fcfcfc;
 }
-.site-footer a:hover {
+.site-footer a:active {
   color: #3366cc;
   text-decoration: none;
 }
@@ -43,8 +43,7 @@ footer {
   color: #fcfcfc;
 }
 .footer-links a:active,
-.footer-links a:focus,
-.footer-links a:hover {
+.footer-links a:focus {
   color: #3366cc;
   text-decoration: none;
 }
@@ -112,8 +111,7 @@ footer {
   transition: all 0.2s linear;
 }
 .social-icons a:active,
-.social-icons a:focus,
-.social-icons a:hover {
+.social-icons a:focus {
   color: #fff;
   background-color: #29aafe;
 }

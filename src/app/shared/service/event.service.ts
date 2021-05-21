@@ -37,7 +37,7 @@ export class EventService {
 
   getPlayersChallenge(idChallenge: number) {
     return this.httpClient.get<Player[]>(
-      `${environment.url}/player/challenge/get/${idChallenge}`,
+      `${environment.url}player/challenge/get/${idChallenge}`,
       {}
     );
   }
