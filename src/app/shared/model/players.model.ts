@@ -1,5 +1,6 @@
 export class Player {
-    id: number;
-    timer: string;
-    url_youtube: string;
+  idUser: number;
+  idEvent: number;
+  timer: string;
+  url_youtube: string;
 }

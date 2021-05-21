@@ -13,6 +13,7 @@ import { AuthService } from "../shared/service/auth.service";
 import { ParticipateEventRequest } from "../shared/model/participate-event.request";
 import { ToastrService } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./register-event-modal.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-event",
@@ -32,7 +33,8 @@ export class EventComponent implements OnInit {
     private modalService: NgbModal,
     private ref: ChangeDetectorRef,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.currentUser = this.authService.currentUserValue;
   }
@@ -51,11 +53,12 @@ export class EventComponent implements OnInit {
     (modalRef.componentInstance as CreateEventModalComponent).init(event);
   }
 
-  sendLink(idEvent: number) {
+  sendLink(idEvent: number, event: string) {
     const modalRef = this.modalService.open(RegisterEventModalComponent);
     (modalRef.componentInstance as RegisterEventModalComponent).init(
       this.currentUser.id,
-      idEvent
+      idEvent,
+      event
     );
   }
 
@@ -95,5 +98,9 @@ export class EventComponent implements OnInit {
 
   showChallenges() {
     this.displayChallenge = !this.displayChallenge;
+  }
+
+  redirectAdmin() {
+    this.router.navigate(["control-speedrun"]);
   }
 }

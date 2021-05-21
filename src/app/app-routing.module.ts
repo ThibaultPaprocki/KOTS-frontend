@@ -16,13 +16,14 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
+  { path: "control-speedrun", component: ControlSpeedrunComponent },
   {
-    path: 'admin',
-    //component: AdminComponent,
+    path: "admin",
+    component: AdminComponent,
     children: [
       //{ path: '', pathMatch: "prefix", redirectTo: 'control-speedrun' },
-      { path: 'control-speedrun', component: ControlSpeedrunComponent },
-    ]
+      //{ path: "control-speedrun", component: ControlSpeedrunComponent },
+    ],
   },
   { path: "404", component: FourOhFourComponent },
   { path: "", pathMatch: "full", redirectTo: "home" },
@@ -33,4 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

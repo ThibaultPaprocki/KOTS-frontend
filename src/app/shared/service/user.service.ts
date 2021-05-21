@@ -16,4 +16,8 @@ export class UserService {
   updatePassword(request: ProfilRequest) {
     return this.httpClient.put<boolean>(environment.url + "password", request);
   }
+
+  getUsername(idUser: number) {
+    return this.httpClient.get<string>(`${environment.url}/username${idUser}`);
+  }
 }

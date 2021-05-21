@@ -33,7 +33,7 @@
         <button
           *ngIf="currentUser.id != tournament.idUser"
           class="btn btn-success"
-          (click)="sendLink(tournament.id)"
+          (click)="sendLink(tournament.id, 'tournament')"
         >
           Participate
         </button>
@@ -81,12 +81,13 @@
         <p class="card-text">Conditions : {{ challenge.conditions }}</p>
       </div>
     </div>
+    <button (click)="redirectAdmin()">PAGE ADMIN</button>
     <button
       *ngIf="currentUser.id != challenge.idUser"
       class="btn btn-success"
-      (click)="sendLink(challenge.id)"
+      (click)="sendLink(challenge.id, 'challenge')"
     >
-      Participate
+      Participate {{ challenge.id }}
     </button>
     <button
       *ngIf="currentUser.id === challenge.idUser"

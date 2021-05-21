@@ -1,10 +1,16 @@
-<div class="main_CS">
+<div class="container main_CS">
+  <div class="text-center">
     <h1>Run verification</h1>
 
     <label for="challenge/tornament-run">Tournament or challenge :</label>
-    <input type="search" id="challenge/tornament-run" placeholder="Tournament or challenge...">
+    <input
+      type="search"
+      id="challenge/tornament-run"
+      placeholder="Tournament or challenge..."
+    />
+  </div>
 
-<!--   <div class="preview_run">
+  <!--   <div class="preview_run">
         <div class="preview_run-title">Nom de la run</div>
         <div class="preview_run-video">
             <iframe width="600" height="400" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
@@ -19,27 +25,44 @@
         </div>
     </div>
     -->
-    <div class="list_run">
-        <div class="row" *ngFor="let user of players">
-            <div class="preview_run col-6">
-                <div class="preview_run-title">Nom de la run</div>
-                <div class="preview_run-video">
-                    <iframe width="600" height="400" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                </div>
-                <div class="preview_run-information">
-                    <p class="preview_run-text">Compte : banane</p>
-                    <p class="preview_run-text">Timer : banane</p>
-                </div>
-                <div class="validation_run">
-                    <input type="button" value="accepted">
-                    <input type="button" value="refuse">
-                </div>
-            </div>
-            <div class="list_run-information col-6">
-                <p class="list_run-text">Compte : user.username</p>
-                <p class="list_run-text">Timer : user.timer</p>
-            </div>
+  <div class="list_run">
+    <div class="d-flex container" *ngFor="let player of players">
+      <div class="mr-auto p-2">
+        <div class="preview_run" *ngIf="player.idUser === 1">
+          <div class="preview_run-title">Nom de la run</div>
+          <div class="preview_run-video">
+            <iframe
+              id="videoLink"
+              width="400"
+              height="200"
+              src="https://www.youtube.com/embed/BwSxYKQRJXc"
+            ></iframe>
+          </div>
+          <div class="preview_run-information">
+            <p class="preview_run-text">
+              VIDEO : {{ player.url_youtube }} Compte :
+              {{ getUsername(player.idUser) }}
+            </p>
+            <p class="preview_run-text">Timer : {{ player.timer }}</p>
+          </div>
+          <div class="validation_run">
+            <button class="btn btn-danger buttonMargin" type="button">
+              REFUSED
+            </button>
+            <button
+              class="btn btn-primary buttonMargin"
+              type="button"
+              (click)="validate(true)"
+            >
+              ACCEPTED
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="list_run-information p-2">
+        <p class="list_run-text">Compte : {{ getUsername(player.idUser) }}</p>
+        <p class="list_run-text">Timer : {{ player.timer }}</p>
+      </div>
     </div>
-
+  </div>
 </div>
