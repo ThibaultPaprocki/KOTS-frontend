@@ -48,7 +48,7 @@ export class ControlSpeedrunComponent implements OnInit {
     };
 
     // this.eventService.validateTournament(validateRun).subscribe();
-    // this.eventService.validateChallenge(validateRun).subscribe();
+    this.eventService.validateChallenge(validateRun).subscribe();
   }
 
   selectPlayer(index: number) {

@@ -53,13 +53,13 @@
             <p class="preview_run-text">Timer : {{ player.timer }}</p>
           </div>
           <div class="validation_run text-center">
-            <button class="btn btn-danger buttonMargin" type="button">
+            <button class="btn btn-danger buttonMargin" type="button" (click)="validateChallenge(false)">
               REFUSED
             </button>
             <button
               class="btn btn-primary buttonMargin"
               type="button"
-              (click)="validate(true)"
+              (click)="validateChallenge(true)"
             >
               ACCEPTED
             </button>
