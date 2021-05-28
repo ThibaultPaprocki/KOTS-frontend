@@ -14,6 +14,8 @@ import { ParticipateEventRequest } from "../shared/model/participate-event.reque
 import { ToastrService } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./register-event-modal.component";
 import { Router } from "@angular/router";
+import { Player } from "../shared/model/players.model";
+import { ValidationRun } from "../shared/model/players.validation.model";
 
 @Component({
   selector: "app-event",
@@ -27,11 +29,11 @@ export class EventComponent implements OnInit {
   currentUser: User;
   displayTournament: boolean = true;
   displayChallenge: boolean = true;
+  // player: ValidationRun;
 
   constructor(
     private eventService: EventService,
     private modalService: NgbModal,
-    private ref: ChangeDetectorRef,
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
@@ -62,20 +64,20 @@ export class EventComponent implements OnInit {
     );
   }
 
-  participateTournament(idTournament: number) {
-    const request: ParticipateEventRequest = {
-      idEvent: idTournament,
-      idUser: this.currentUser.id,
-    };
-    this.eventService.registerTournament(request).subscribe(
-      () => {
-        location.reload();
-      },
-      (error) => {
-        this.toastr.error("Register Event Error");
-      }
-    );
-  }
+  // participateTournament(idTournament: number) {
+  //   const request: ParticipateEventRequest = {
+  //     idEvent: idTournament,
+  //     idUser: this.currentUser.id,
+  //   };
+  //   this.eventService.registerTournament(request).subscribe(
+  //     () => {
+  //       location.reload();
+  //     },
+  //     (error) => {
+  //       this.toastr.error("Register Event Error");
+  //     }
+  //   );
+  // }
 
   participateChallenge(idChallenge: number) {
     const request: ParticipateEventRequest = {
@@ -87,6 +89,7 @@ export class EventComponent implements OnInit {
         location.reload();
       },
       (error) => {
+        console.log(error);
         this.toastr.error("Register Event Error");
       }
     );
@@ -103,4 +106,12 @@ export class EventComponent implements OnInit {
   redirectAdmin() {
     this.router.navigate(["control-speedrun"]);
   }
+
+  onWheel(event: WheelEvent): void {
+    if (event.deltaY > 0)
+      document.getElementById("container")!.scrollLeft += 40;
+    else document.getElementById("container")!.scrollLeft -= 40;
+  }
+
+  //getPlayer(idChallenge: number) {}
 }

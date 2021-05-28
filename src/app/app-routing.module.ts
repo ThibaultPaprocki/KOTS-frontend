@@ -9,11 +9,13 @@ import { EventComponent } from "./event/event.component";
 import { AuthGuard } from "./shared/auth/auth.gard";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { AdminComponent } from "./admin/admin.component";
+import { SpeedRunToolComponent } from "./speedrunTools/tool.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
+  { path: "tools", component: SpeedRunToolComponent },
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },

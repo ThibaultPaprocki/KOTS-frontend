@@ -77,9 +77,10 @@
     </button>
   </div>
   <div
-    class="card bg-dark mb-4"
+    class="card bg-dark mb-4 "
     *ngFor="let challenge of challenges"
     style="color: white"
+    (wheel)="onWheel($event)"
   >
     <div id="cardEvent">
       <div class="card-header text-center">Challenge (nom jeu)</div>
@@ -95,15 +96,29 @@
       class="btn btn-success"
       (click)="sendLink(challenge.id, 'challenge')"
     >
-      Participate {{ challenge.id }}
+      Participate
     </button>
     <button
       *ngIf="currentUser.id === challenge.idUser"
       class="btn btn-secondary"
       disabled
     >
-      You already participate in this challenge
+      You created this challenge
     </button>
+    <!-- <button
+      *ngIf="getPlayer() != undefined && !player.validation"
+      class="btn btn-secondary"
+      disabled
+    >
+      Your run is refused for now.
+    </button>
+    <button
+      *ngIf="getPlayer() != undefined && player.validation"
+      class="btn btn-secondary"
+      disabled
+    >
+      Your run is accepted.
+    </button> -->
   </div>
 </div>
 <!-- "participateChallenge(challenge.id)" -->

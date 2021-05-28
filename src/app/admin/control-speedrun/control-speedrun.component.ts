@@ -19,11 +19,11 @@ export class ControlSpeedrunComponent implements OnInit {
     private userService: UserService,
     private eventService: EventService
   ) {
-    this.getPlayers(2);
+    this.getPlayers(1);
   }
 
   ngOnInit(): void {
-    this.getPlayers(2);
+    this.getPlayers(1);
   }
 
   getPlayers(idEvent: number) {

@@ -21,16 +21,16 @@
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",
+    "jquery": "^1.9.1",
     "ngx-toastr": "^13.2.1",
+    "popper.js": "^1.16.0",
     "rxjs": "6",
     "rxjs-compat": "6",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "angular-font-awesome": "^3.1.2",
-    "jquery": "^1.9.1",
-    "popper.js": "^1.16.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.0",

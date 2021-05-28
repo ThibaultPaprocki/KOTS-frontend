@@ -13,7 +13,6 @@ import { UserRequest } from "../shared/model/user.request";
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   fieldTextType: boolean;
-  fieldTextType2: boolean;
 
   constructor(
     private authService: AuthService,
@@ -25,7 +24,7 @@ export class RegisterComponent implements OnInit {
         username: new FormControl("", [Validators.required]),
         password: new FormControl("", [Validators.required]),
         confirmedPassword: new FormControl("", [Validators.required]),
-        mail: new FormControl("", [Validators.email]),
+        mail: new FormControl("", [Validators.email, Validators.required]),
       },
       { validators: this.checkPasswords }
     );
@@ -60,9 +59,6 @@ export class RegisterComponent implements OnInit {
 
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
-  }
-  toggleFieldTextType2() {
-    this.fieldTextType2 = !this.fieldTextType2;
   }
 
   checkPasswords(group: FormGroup) {
