@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -21,6 +22,7 @@ import { ToastrModule } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./event/register-event-modal.component";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { SanitizeHtmlPipe } from "./tool/pipe.component";
+import { YouTubePlayerModule } from "@angular/youtube-player";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { SanitizeHtmlPipe } from "./tool/pipe.component";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    YouTubePlayerModule,
     ToastrModule.forRoot(),
   ],
   providers: [
@@ -59,4 +62,6 @@ import { SanitizeHtmlPipe } from "./tool/pipe.component";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
+
+

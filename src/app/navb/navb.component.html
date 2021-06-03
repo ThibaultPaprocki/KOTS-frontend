@@ -19,6 +19,9 @@
     <a class="nav-link" routerLink="register">Sign Up</a>
   </li>
   <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
+    <a class="nav-link" routerLink="admin">Admin</a>
+  </li>
+  <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
     <a class="nav-link profil" routerLink="profil">{{
       currentUser.username
     }}</a>

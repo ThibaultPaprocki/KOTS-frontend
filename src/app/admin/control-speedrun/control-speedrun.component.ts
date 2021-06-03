@@ -5,6 +5,7 @@ import { EventService } from "src/app/shared/service/event.service";
 import { UserService } from "src/app/shared/service/user.service";
 import { User } from "../../shared/model/user.model";
 
+
 @Component({
   selector: "app-control-speedrun",
   templateUrl: "./control-speedrun.component.html",
@@ -14,6 +15,7 @@ export class ControlSpeedrunComponent implements OnInit {
   players: Player[];
   user: User;
   indexClick: number;
+  apiLoaded = false;
 
   constructor(
     private userService: UserService,
@@ -24,6 +26,14 @@ export class ControlSpeedrunComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlayers(2);
+    if (!this.apiLoaded) {
+      // This code loads the IFrame Player API code asynchronously, according to the instructions at
+      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
   }
 
   getPlayers(idEvent: number) {
