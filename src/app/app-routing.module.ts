@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },
-  {path: "ranking", component: RankingComponent },
+  {path: "event/:id/rankings", component: RankingComponent },
   {
     path: "admin",
     component: AdminComponent,

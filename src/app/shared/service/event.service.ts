@@ -6,6 +6,12 @@ import { EventRequest } from "../model/event.request";
 import { ParticipateEventRequest } from "../model/participate-event.request";
 import { Player } from "../model/players.model";
 import { ValidationRun } from "../model/players.validation.model";
+import { Observable } from "rxjs";
+
+export interface ChallengeRankingModel{
+  id: any;
+  username: string;
+}
 
 @Injectable({
   providedIn: "root",
@@ -27,6 +33,10 @@ export class EventService {
 
   getChallenges() {
     return this.httpClient.get<Event[]>(environment.url + "challenge/get");
+  }
+
+  getChallengeRankings(challengeId: number): Observable<ChallengeRankingModel[]> {
+    return this.httpClient.get<ChallengeRankingModel[]>(environment.url +`challenge/${challengeId}/rankings`);
   }
 
   // getPlayersTournament(idTournament: number) {

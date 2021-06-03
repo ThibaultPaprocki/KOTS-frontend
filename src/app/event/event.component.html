@@ -82,14 +82,15 @@
     style="color: white"
   >
     <div id="cardEvent">
-      <div class="card-header text-center">Challenge (nom jeu)</div>
+      <div class="card-header text-center">Challenge (nom jeu){{challenge.id}}</div>
       <div class="card-body">
         <p class="card-text">Specificity : {{ challenge.specificity }}</p>
         <p class="card-text">Description : {{ challenge.description }}</p>
         <p class="card-text">Conditions : {{ challenge.conditions }}</p>
       </div>
     </div>
-    <button (click)="redirectAdmin()">PAGE ADMIN</button>
+    <button (click)="redirectAdmin(challenge)">PAGE ADMIN</button>
+    <button (click)="redirectRankings(challenge)">RANKINGS</button>
     <button
       *ngIf="currentUser.id != challenge.idUser"
       class="btn btn-success"
