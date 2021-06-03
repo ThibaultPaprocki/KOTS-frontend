@@ -21,6 +21,7 @@ import { ToastrModule } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./event/register-event-modal.component";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { SanitizeHtmlPipe } from "./tool/pipe.component";
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SanitizeHtmlPipe } from "./tool/pipe.component";
     RegisterEventModalComponent,
     ControlSpeedrunComponent,
     SanitizeHtmlPipe,
+    RankingComponent,
   ],
   imports: [
     BrowserModule,
