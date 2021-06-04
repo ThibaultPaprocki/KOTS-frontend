@@ -15,6 +15,7 @@ export class ControlSpeedrunComponent implements OnInit {
   users: UserRun[] = [];
   user: User;
   indexClick: number;
+  apiLoaded = false;
 
   constructor(
     private userService: UserService,
@@ -22,7 +23,15 @@ export class ControlSpeedrunComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUsersParticipations(1);
+    this.getUsersParticipations(2);
+    if (!this.apiLoaded) {
+      // This code loads the IFrame Player API code asynchronously, according to the instructions at
+      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
   }
 
   getUsersParticipations(idEvent: number) {

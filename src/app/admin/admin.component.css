@@ -1,0 +1,35 @@
+h1 {
+  color: #343a40;
+
+  -webkit-text-stroke: 1px white; /* width and color */
+  font-weight: bolder;
+}
+
+.card {
+  width: 300px;
+  height: 320px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-table;
+}
+
+hr {
+  width: 1000px;
+  color: #343a40;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 30px;
+  font-size: 0.4em;
+  background-color: #343a40;
+  color: white;
+}
+
+.event-show {
+  cursor: pointer;
+}
+
+#cardEvent {
+  height: 250px;
+}

@@ -26,6 +26,7 @@
     </div>
     -->
   <div class="list_run">
+    <<<<<<< HEAD
     <div
       class="d-flex container"
       *ngFor="let player of users; let index = index"
@@ -34,39 +35,52 @@
         class="list_run-information mr-auto p-2"
         (click)="selectPlayer(index)"
       >
-        <div class="list_run-text">Participant n° : {{ index + 1 }}</div>
-        <p class="list_run-text">Timer : {{ player.timer }}</p>
-      </div>
-      <div class=" p-2" *ngIf="index === indexClick">
-        <div class="preview_run">
-          <div class="preview_run-title">Challenge</div>
-          <div class="preview_run-video">
-            <iframe
+        =======
+        <div
+          class="d-flex container"
+          *ngFor="let player of players; let index = index"
+        >
+          <div
+            class="list_run-information mr-auto p-2"
+            (click)="selectPlayer(index)"
+          >
+            >>>>>>> origin/ludo/pageadmin
+            <div class="list_run-text">Participant n° : {{ index + 1 }}</div>
+            <p class="list_run-text">Timer : {{ player.timer }}</p>
+          </div>
+          <div class=" p-2" *ngIf="index === indexClick">
+            <div class="preview_run">
+              <div class="preview_run-title">Challenge</div>
+              <div class="preview_run-video">
+                <youtube-player [videoId]="'8AHCfZTRGiI'"></youtube-player>
+                <!-- <iframe
               id="videoLink"
               width="400"
               height="200"
               src="https://www.youtube.com/embed/8AHCfZTRGiI"
-            ></iframe>
-          </div>
-          <div class="preview_run-information">
-            <p class="preview_run-text">Participant n° : {{ index + 1 }}</p>
-            <p class="preview_run-text">Timer : {{ player.timer }}</p>
-          </div>
-          <div class="validation_run text-center">
-            <button
-              class="btn btn-danger buttonMargin"
-              type="button"
-              (click)="validate(player.idRun, 'refused')"
-            >
-              REFUSED
-            </button>
-            <button
-              class="btn btn-primary buttonMargin"
-              type="button"
-              (click)="validate(player.idRun, 'accepted')"
-            >
-              ACCEPTED
-            </button>
+            ></iframe> -->
+              </div>
+              <div class="preview_run-information">
+                <p class="preview_run-text">Participant n° : {{ index + 1 }}</p>
+                <p class="preview_run-text">Timer : {{ player.timer }}</p>
+              </div>
+              <div class="validation_run text-center">
+                <button
+                  class="btn btn-danger buttonMargin"
+                  type="button"
+                  (click)="validate(player.idRun, 'refused')"
+                >
+                  REFUSED
+                </button>
+                <button
+                  class="btn btn-primary buttonMargin"
+                  type="button"
+                  (click)="validate(player.idRun, 'accepted')"
+                >
+                  ACCEPTED
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
