@@ -112,14 +112,14 @@
             You created this challenge
           </button>
           <!-- <button
-      *ngIf="getPlayer() != undefined && !player.validation"
+      *ngIf="state === 'refused'"
       class="btn btn-secondary"
       disabled
     >
       Your run is refused for now.
     </button>
     <button
-      *ngIf="getPlayer() != undefined && player.validation"
+      *ngIf="state === 'refused'"
       class="btn btn-secondary"
       disabled
     >
@@ -130,4 +130,3 @@
     </div>
   </div>
 </div>
-<!-- "participateChallenge(challenge.id)" -->

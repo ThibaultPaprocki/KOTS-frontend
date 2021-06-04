@@ -33,13 +33,12 @@ export class EventComponent implements OnInit, OnDestroy {
   displayChallenge: boolean = true;
   challengesSubscription: Subscription;
   tournamentsSubscription: Subscription;
-  // player: ValidationRun;
+  state: string;
 
   constructor(
     private eventService: EventService,
     private modalService: NgbModal,
     private authService: AuthService,
-    private toastr: ToastrService,
     private router: Router
   ) {
     this.currentUser = this.authService.currentUserValue;
@@ -78,34 +77,25 @@ export class EventComponent implements OnInit, OnDestroy {
     );
   }
 
-  // participateTournament(idTournament: number) {
-  //   const request: ParticipateEventRequest = {
-  //     idEvent: idTournament,
-  //     idUser: this.currentUser.id,
-  //   };
-  //   this.eventService.registerTournament(request).subscribe(
-  //     () => {
-  //     },
-  //     (error) => {
-  //       this.toastr.error("Register Event Error");
-  //     }
-  //   );
-  // }
+  checkParticipationStateTournament(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
+    };
+  }
+
+  checkParticipationStateChallenge(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
+    };
+  }
 
   participateChallenge(idChallenge: number) {
     const request: ParticipateEventRequest = {
       idEvent: idChallenge,
       idUser: this.currentUser.id,
     };
-    // this.eventService.registerChallenge(request).subscribe(
-    //   () => {
-    //     this.loadData();
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //     this.toastr.error("Register Event Error");
-    //   }
-    // );
   }
 
   showTournaments() {

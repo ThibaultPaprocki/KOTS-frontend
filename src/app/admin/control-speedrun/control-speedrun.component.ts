@@ -4,6 +4,7 @@ import { ValidationRun } from "src/app/shared/model/players.validation.model";
 import { EventService } from "src/app/shared/service/event.service";
 import { UserService } from "src/app/shared/service/user.service";
 import { User } from "../../shared/model/user.model";
+import { UserRun } from "src/app/shared/model/user-run.model";
 
 @Component({
   selector: "app-control-speedrun",
@@ -11,7 +12,7 @@ import { User } from "../../shared/model/user.model";
   styleUrls: ["./control-speedrun.component.css"],
 })
 export class ControlSpeedrunComponent implements OnInit {
-  users: UserParticipation[] = [];
+  users: UserRun[] = [];
   user: User;
   indexClick: number;
 
@@ -21,10 +22,10 @@ export class ControlSpeedrunComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getPlayers(1);
+    this.getUsersParticipations(1);
   }
 
-  getPlayers(idEvent: number) {
+  getUsersParticipations(idEvent: number) {
     this.eventService
       .getParticipationsChallenge(idEvent)
       .subscribe((participations) => (this.users = participations));
@@ -38,15 +39,16 @@ export class ControlSpeedrunComponent implements OnInit {
     return undefined;
   }
 
-  validate(idUser: number, idEvent: number, validation: boolean) {
+  validate(idRun: number, validation: string) {
     const validateRun: ValidationRun = {
-      idUser: idUser,
-      idEvent: idEvent,
+      idRun: idRun,
+      idEvent: 1, //idEvent a choppé autrement
       validation: validation,
     };
 
-    // this.eventService.validateTournament(validateRun).subscribe();
-    // this.eventService.validateChallenge(validateRun).subscribe();
+    //this.eventService.validateParticipationTournament(validateRun).subscribe();
+
+    this.eventService.validateParticipationChallenge(validateRun).subscribe();
   }
 
   selectPlayer(index: number) {

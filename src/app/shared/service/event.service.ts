@@ -8,6 +8,7 @@ import { UserParticipation } from "../model/user-participation.model";
 import { ValidationRun } from "../model/players.validation.model";
 import { BehaviorSubject } from "rxjs";
 import { tap } from "rxjs/operators";
+import { UserRun } from "../model/user-run.model";
 
 @Injectable({
   providedIn: "root",
@@ -64,25 +65,28 @@ export class EventService {
   }
 
   getParticipationsTournament(idTournament: number) {
-    return this.httpClient.get<UserParticipation[]>(
+    return this.httpClient.get<UserRun[]>(
       `${environment.url}participate/tournament/get/${idTournament}`
     );
   }
 
   getParticipationsChallenge(idChallenge: number) {
-    return this.httpClient.get<UserParticipation[]>(
+    return this.httpClient.get<UserRun[]>(
       `${environment.url}participate/challenge/get/${idChallenge}`
     );
   }
 
-  // validateTournament(request: ValidationRun) {
-  //   return this.httpClient.put(
-  //     environment.url + "tournament/validate",
-  //     request
-  //   );
-  // }
+  validateParticipationTournament(request: ValidationRun) {
+    return this.httpClient.put(
+      environment.url + "participate/tournament/validate",
+      request
+    );
+  }
 
-  // validateChallenge(request: ValidationRun) {
-  //   return this.httpClient.put(environment.url + "challenge/validate", request);
-  // }
+  validateParticipationChallenge(request: ValidationRun) {
+    return this.httpClient.put(
+      environment.url + "participate/challenge/validate",
+      request
+    );
+  }
 }

@@ -1,5 +1,5 @@
 export interface ValidationRun {
-  idUser: number;
+  idRun: number;
   idEvent: number;
-  validation: boolean;
+  validation: string;
 }
