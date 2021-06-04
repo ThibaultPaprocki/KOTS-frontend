@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from "@angular/core";
-import { EventService } from "../shared/service/event.service";
+import { ChallengeRankingModel, EventService } from "../shared/service/event.service";
 import { Event } from "../shared/model/event.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CreateEventModalComponent } from "./create-event-modal.component";
@@ -100,7 +100,14 @@ export class EventComponent implements OnInit {
     this.displayChallenge = !this.displayChallenge;
   }
 
-  redirectAdmin() {
-    this.router.navigate(["control-speedrun"]);
+  redirectAdmin(event: Event) {
+    //TODO
+    this.router.navigate([ 'event',  event.id, 'admin' ]);
+  }
+
+  redirectRankings(event: Event) {
+    this.router.navigate([ 'event',  event.id, 'rankings' ]);
+    // => navigate to angular page "/event/123/rankings"   ... as defined in app.router.ts
+    // for Route   { path: 'event/:id/rankings', component: RankingComponent },
   }
 }

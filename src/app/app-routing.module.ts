@@ -9,6 +9,7 @@ import { EventComponent } from "./event/event.component";
 import { AuthGuard } from "./shared/auth/auth.gard";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { AdminComponent } from "./admin/admin.component";
+import { RankingComponent } from "./ranking/ranking.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },
+  {path: "event/:id/rankings", component: RankingComponent },
   {
     path: "admin",
     component: AdminComponent,
