@@ -6,7 +6,7 @@ import { EventRequest } from "../shared/model/event.request";
 import { User } from "../shared/model/user.model";
 import { AuthService } from "../shared/service/auth.service";
 import { ToastrService } from "ngx-toastr";
-import { Player } from "../shared/model/players.model";
+import { UserParticipation } from "../shared/model/user-participation.model";
 
 @Component({
   selector: "app-create-event-modal",
@@ -30,34 +30,38 @@ export class RegisterEventModalComponent {
     this.idUser = idUser;
     this.idEvent = idEvent;
     this.eventForm = new FormGroup({
-      urlVideo: new FormControl(undefined, Validators.required),
+      videoId: new FormControl(undefined, Validators.required),
       timer: new FormControl(undefined, Validators.required),
     });
     this.event = event;
   }
 
   sendLink() {
-    const playerRequest: Player = {
+    const participationRequest: UserParticipation = {
       idUser: this.idUser,
       idEvent: this.idEvent,
       timer: this.eventForm.get("timer").value,
-      url_youtube: this.eventForm.get("urlVideo").value,
+      videoid: this.eventForm.get("videoId").value,
     };
 
-    // if (this.event === "tournament")
-    //   this.eventService.createPlayerTournament(playerRequest).subscribe(() => {
-    //     this.toastr.success(
-    //       "Participation send. Wait a validation from the admin."
-    //     );
-    //     this.dismiss();
-    //   });
-    // else
-    this.eventService.createPlayerChallenge(playerRequest).subscribe(() => {
-      this.toastr.success(
-        "Participation send. Wait a validation from the admin."
-      );
-      this.dismiss();
-    });
+    if (this.event === "tournament")
+      this.eventService
+        .createParticipationTournament(participationRequest)
+        .subscribe(() => {
+          this.toastr.success(
+            "Participation send. Wait a validation from the admin."
+          );
+          this.dismiss();
+        });
+    else
+      this.eventService
+        .createParticipationChallenge(participationRequest)
+        .subscribe(() => {
+          this.toastr.success(
+            "Participation send. Wait a validation from the admin."
+          );
+          this.dismiss();
+        });
   }
 
   dismiss() {

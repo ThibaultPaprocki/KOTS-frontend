@@ -76,7 +76,6 @@ export class ProfilComponent implements OnInit {
         //   }
         // );
         this.router.navigate(["login"]);
-        location.reload();
       },
       (error) => {
         this.toastr.error("Updating Profil Error");
@@ -91,7 +90,6 @@ export class ProfilComponent implements OnInit {
         if (data) {
           this.auth.logout();
           this.router.navigate(["login"]);
-          location.reload();
         } else {
           this.toastr.error("Password already exists");
         }

@@ -13,6 +13,10 @@ h1 {
   display: inline-table;
 }
 
+.card p {
+  white-space: normal;
+}
+
 hr {
   width: 1000px;
   color: #343a40;
@@ -37,4 +41,9 @@ hr {
 .scrollOption {
   overflow-x: scroll;
   white-space: nowrap;
+}
+
+.optionss {
+  width: 300px !important;
+  max-width: 300px !important;
 }

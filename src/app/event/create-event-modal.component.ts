@@ -49,7 +49,6 @@ export class CreateEventModalComponent {
       this.eventService.createTournament(request).subscribe(
         () => {
           this.activeModal.dismiss();
-          location.reload();
         },
         (error) => {
           this.toastr.error(error);
@@ -59,7 +58,6 @@ export class CreateEventModalComponent {
       this.eventService.createChallenge(request).subscribe(
         () => {
           this.activeModal.dismiss();
-          location.reload();
         },
         (error) => {
           this.toastr.error(error);

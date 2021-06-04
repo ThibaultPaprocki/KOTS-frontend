@@ -4,21 +4,41 @@ import { Event } from "../model/event.model";
 import { environment } from "../../../environments/environment";
 import { EventRequest } from "../model/event.request";
 import { ParticipateEventRequest } from "../model/participate-event.request";
-import { Player } from "../model/players.model";
+import { UserParticipation } from "../model/user-participation.model";
 import { ValidationRun } from "../model/players.validation.model";
+import { BehaviorSubject } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class EventService {
+  public readonly tournamentsChange$ = new BehaviorSubject<string>("init");
+
+  public readonly challengesChange$ = new BehaviorSubject<string>("init");
+
   constructor(private httpClient: HttpClient) {}
 
   createTournament(request: EventRequest) {
-    return this.httpClient.post(environment.url + "tournament/create", request);
+    return this.httpClient
+      .post(environment.url + "tournament/create", request)
+      .pipe(
+        tap(() => {
+          console.log("tournament created");
+          this.tournamentsChange$.next("created");
+        })
+      );
   }
 
   createChallenge(request: EventRequest) {
-    return this.httpClient.post(environment.url + "challenge/create", request);
+    return this.httpClient
+      .post(environment.url + "challenge/create", request)
+      .pipe(
+        tap(() => {
+          console.log("challenge created");
+          this.challengesChange$.next("created");
+        })
+      );
   }
 
   getTournaments() {
@@ -29,28 +49,30 @@ export class EventService {
     return this.httpClient.get<Event[]>(environment.url + "challenge/get");
   }
 
-  // getPlayersTournament(idTournament: number) {
-  //   return this.httpClient.get<Player[]>(
-  //     `${environment.url}/players/tournament/get/${idTournament}`
-  //   );
-  // }
-
-  getPlayersChallenge(idChallenge: number) {
-    return this.httpClient.get<Player[]>(
-      `${environment.url}player/challenge/get/${idChallenge}`,
-      {}
-    );
-  }
-
-  registerTournament(request: ParticipateEventRequest) {
-    return this.httpClient.put(
-      environment.url + "tournament/register",
+  createParticipationTournament(request: UserParticipation) {
+    return this.httpClient.post(
+      environment.url + "participate/tournament",
       request
     );
   }
 
-  registerChallenge(request: ParticipateEventRequest) {
-    return this.httpClient.put(environment.url + "challenge/register", request);
+  createParticipationChallenge(request: UserParticipation) {
+    return this.httpClient.post(
+      environment.url + "participate/challenge",
+      request
+    );
+  }
+
+  getParticipationsTournament(idTournament: number) {
+    return this.httpClient.get<UserParticipation[]>(
+      `${environment.url}participate/tournament/get/${idTournament}`
+    );
+  }
+
+  getParticipationsChallenge(idChallenge: number) {
+    return this.httpClient.get<UserParticipation[]>(
+      `${environment.url}participate/challenge/get/${idChallenge}`
+    );
   }
 
   // validateTournament(request: ValidationRun) {
@@ -60,21 +82,7 @@ export class EventService {
   //   );
   // }
 
-  validateChallenge(request: ValidationRun) {
-    return this.httpClient.put(environment.url + "challenge/validate", request);
-  }
-
-  // createPlayerTournament(request: Player) {
-  //   return this.httpClient.post(
-  //     environment.url + "player/tournament/register",
-  //     request
-  //   );
+  // validateChallenge(request: ValidationRun) {
+  //   return this.httpClient.put(environment.url + "challenge/validate", request);
   // }
-
-  createPlayerChallenge(request: Player) {
-    return this.httpClient.post(
-      environment.url + "player/challenge/register",
-      request
-    );
-  }
 }

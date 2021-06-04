@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Player } from "src/app/shared/model/players.model";
+import { UserParticipation } from "src/app/shared/model/user-participation.model";
 import { ValidationRun } from "src/app/shared/model/players.validation.model";
 import { EventService } from "src/app/shared/service/event.service";
 import { UserService } from "src/app/shared/service/user.service";
@@ -11,16 +11,14 @@ import { User } from "../../shared/model/user.model";
   styleUrls: ["./control-speedrun.component.css"],
 })
 export class ControlSpeedrunComponent implements OnInit {
-  players: Player[];
+  users: UserParticipation[] = [];
   user: User;
   indexClick: number;
 
   constructor(
     private userService: UserService,
     private eventService: EventService
-  ) {
-    this.getPlayers(1);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getPlayers(1);
@@ -28,8 +26,8 @@ export class ControlSpeedrunComponent implements OnInit {
 
   getPlayers(idEvent: number) {
     this.eventService
-      .getPlayersChallenge(idEvent)
-      .subscribe((playerList) => (this.players = playerList));
+      .getParticipationsChallenge(idEvent)
+      .subscribe((participations) => (this.users = participations));
   }
 
   getUsername(idUser: number): string {
@@ -48,7 +46,7 @@ export class ControlSpeedrunComponent implements OnInit {
     };
 
     // this.eventService.validateTournament(validateRun).subscribe();
-    this.eventService.validateChallenge(validateRun).subscribe();
+    // this.eventService.validateChallenge(validateRun).subscribe();
   }
 
   selectPlayer(index: number) {
