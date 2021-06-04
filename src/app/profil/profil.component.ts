@@ -62,8 +62,7 @@ export class ProfilComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.updateProfil.value).subscribe(
       () => {
-        this.currentUser = this.auth.currentUserValue;
-        //this.auth.logout();
+        this.auth.logout();
         // this.auth.login(this.loginForm.value).subscribe(
         //   () => {
         //     this.router.navigate(["profil"]);
@@ -73,7 +72,7 @@ export class ProfilComponent implements OnInit {
         //     console.log(error);
         //   }
         // );
-        //this.router.navigate(["login"]);
+        this.router.navigate(["login"]);
       },
       (error) => {
         this.toastr.error("Updating Profil Error");

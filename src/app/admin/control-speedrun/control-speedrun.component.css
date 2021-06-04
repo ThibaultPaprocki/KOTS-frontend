@@ -1,3 +1,11 @@
+h1,
+label {
+  color: #343a40;
+
+  -webkit-text-stroke: 1px white; /* width and color */
+  font-weight: bolder;
+}
+
 .list_run-information {
   background-color: beige;
   margin: 20px;
