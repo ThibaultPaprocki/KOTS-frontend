@@ -10,14 +10,12 @@
     <div class="card-text password" [formGroup]="updPassword">
       Password :
       <i class="fa fa-edit" (click)="updatingPassword()"></i>
-      <div class="password">
+      <div class="password" *ngIf="updating">
         <input
-          #pswd
           type="password"
           class="form-control"
           formControlName="password"
           id="username"
-          [disabled]="updating"
         />
       </div>
       <div class="text-center">

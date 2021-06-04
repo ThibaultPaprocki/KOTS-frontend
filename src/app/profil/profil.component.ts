@@ -21,9 +21,6 @@ export class ProfilComponent implements OnInit {
   updating: boolean = false;
   //loginForm: FormGroup;
 
-  @ViewChild("pswd")
-  private editPassword!: ElementRef;
-
   constructor(
     private auth: AuthService,
     private userService: UserService,
@@ -65,7 +62,8 @@ export class ProfilComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.updateProfil.value).subscribe(
       () => {
-        this.auth.logout();
+        this.currentUser = this.auth.currentUserValue;
+        //this.auth.logout();
         // this.auth.login(this.loginForm.value).subscribe(
         //   () => {
         //     this.router.navigate(["profil"]);
@@ -75,7 +73,7 @@ export class ProfilComponent implements OnInit {
         //     console.log(error);
         //   }
         // );
-        this.router.navigate(["login"]);
+        //this.router.navigate(["login"]);
       },
       (error) => {
         this.toastr.error("Updating Profil Error");
@@ -88,8 +86,8 @@ export class ProfilComponent implements OnInit {
     this.userService.updatePassword(this.updPassword.value).subscribe(
       (data) => {
         if (data) {
-          this.auth.logout();
-          this.router.navigate(["login"]);
+          // this.auth.logout();
+          // this.router.navigate(["login"]);
         } else {
           this.toastr.error("Password already exists");
         }
