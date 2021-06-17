@@ -1,0 +1,19 @@
+h1 {
+  color: white;
+
+  /* -webkit-text-stroke: 1px white;  width and color */
+  font-weight: bolder;
+}
+
+label {
+  color: white;
+}
+
+.list_run-information {
+  background-color: beige;
+  margin: 20px;
+}
+
+.buttonMargin {
+  margin: 20px;
+}

@@ -6,7 +6,7 @@ import { EventRequest } from "../model/event.request";
 import { ParticipateEventRequest } from "../model/participate-event.request";
 import { UserParticipation } from "../model/user-participation.model";
 import { ValidationRun } from "../model/players.validation.model";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { UserRun } from "../model/user-run.model";
 
@@ -64,13 +64,13 @@ export class EventService {
     );
   }
 
-  getParticipationsTournament(idTournament: number) {
+  getParticipationsTournament(idTournament: number): Observable<UserRun[]> {
     return this.httpClient.get<UserRun[]>(
       `${environment.url}participate/tournament/get/${idTournament}`
     );
   }
 
-  getParticipationsChallenge(idChallenge: number) {
+  getParticipationsChallenge(idChallenge: number): Observable<UserRun[]> {
     return this.httpClient.get<UserRun[]>(
       `${environment.url}participate/challenge/get/${idChallenge}`
     );

@@ -10,6 +10,7 @@ import { AuthGuard } from "./shared/auth/auth.gard";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { AdminComponent } from "./admin/admin.component";
 import { SpeedRunToolComponent } from "./speedrunTools/tool.component";
+import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -19,6 +20,10 @@ const routes: Routes = [
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },
+  {
+    path: "control-speedrun/:type/:id",
+    component: ControlSpeedrunEventComponent,
+  },
   {
     path: "admin",
     component: AdminComponent,

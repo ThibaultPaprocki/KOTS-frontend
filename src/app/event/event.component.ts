@@ -106,11 +106,9 @@ export class EventComponent implements OnInit, OnDestroy {
     this.displayChallenge = !this.displayChallenge;
   }
 
-  redirectAdmin() {
-    this.router.navigate(["control-speedrun"]);
+  redirectAdmin(type: string, eventId: number) {
+    this.router.navigate(["control-speedrun", type, eventId]);
   }
-
-  //getPlayer(idChallenge: number) {}
 
   loadData() {
     this.eventService.getTournaments().subscribe((tournaments) => {

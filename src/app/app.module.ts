@@ -1,4 +1,3 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 
@@ -22,6 +21,9 @@ import { RegisterEventModalComponent } from "./event/register-event-modal.compon
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { SanitizeHtmlPipe } from "./tool/pipe.component";
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
 
 @NgModule({
   declarations: [
@@ -37,10 +39,12 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     CreateEventModalComponent,
     RegisterEventModalComponent,
     ControlSpeedrunComponent,
+    ControlSpeedrunEventComponent,
     SanitizeHtmlPipe,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
