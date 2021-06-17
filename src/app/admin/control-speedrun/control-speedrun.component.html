@@ -34,7 +34,9 @@
         class="list_run-information mr-auto p-2"
         (click)="selectPlayer(index)"
       >
-        <div class="list_run-text">Participant n° : {{ index + 1 }}</div>
+        <div class="list_run-text">
+          Participant : {{ player.user.username }}
+        </div>
         <p class="list_run-text">Timer : {{ player.timer }}</p>
       </div>
       <div class=" p-2" *ngIf="index === indexClick">
@@ -50,7 +52,9 @@
             ></iframe> -->
           </div>
           <div class="preview_run-information">
-            <p class="preview_run-text">Participant n° : {{ index + 1 }}</p>
+            <p class="preview_run-text">
+              Participant : {{ player.user.username }}
+            </p>
             <p class="preview_run-text">Timer : {{ player.timer }}</p>
           </div>
           <div class="validation_run text-center">
