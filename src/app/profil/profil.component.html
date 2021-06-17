@@ -2,6 +2,7 @@
   [formGroup]="updateProfil"
   class="card bg-dark mb-3 container"
   style="max-width: 25rem"
+  *ngIf="currentUser"
 >
   <div class="card-header text-center" style="font-size: 2em">
     {{ currentUser.username }}
