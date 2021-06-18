@@ -1,80 +1,73 @@
-<div class="container main_CS">
-  <div class="text-center">
-    <h1>Run verification</h1>
+<div id="title" class="text-center">
+  <h1>
+    Tournaments
+    <i class="fa fa-caret-down event-show" (click)="showTournaments()"></i>
+  </h1>
+</div>
+<div id="title" class="text-center" *ngIf="!displayTournament">
+  <h1>
+    Tournaments
+    <i class="fa fa-caret-up event-show" (click)="showTournaments()"></i>
+  </h1>
+</div>
 
-    <label for="challenge/tornament-run">Tournament or challenge :</label>
-    <input
-      type="search"
-      id="challenge/tornament-run"
-      placeholder="Tournament or challenge..."
-    />
-  </div>
-
-  <!--   <div class="preview_run">
-        <div class="preview_run-title">Nom de la run</div>
-        <div class="preview_run-video">
-            <iframe width="600" height="400" src=""></iframe>
+<div class="container-fluid">
+  <div
+    class="card bg-dark mb-4"
+    *ngFor="let tournament of tournaments"
+    style="color: white"
+  >
+    <div class="">
+      <div id="cardEvent">
+        <div class="card-header text-center">Tournoi (nom jeu)</div>
+        <div class="card-body ">
+          <p class="card-text">Specificity : {{ tournament.specificity }}</p>
+          <p class="card-text">Description : {{ tournament.description }}</p>
+          <p class="card-text">Conditions : {{ tournament.conditions }}</p>
         </div>
-        <div class="preview_run-information">
-            <p class="preview_run-text">Compte : {{ }}</p>
-            <p class="preview_run-text">Timer : {{ }}</p>
-        </div>
-        <div class="validation_run">
-            <input type="button" value="accepted">
-            <input type="button" value="refuse">
-        </div>
+      </div>
+      <div class="text-center">
+        <button (click)="redirectAdmin('tournament', tournament.id)">
+          PAGE verification
+        </button>
+      </div>
     </div>
-    -->
-  <div class="list_run">
-    <div
-      class="d-flex container"
-      *ngFor="let player of users; let index = index"
-    >
-      <div
-        class="list_run-information mr-auto p-2"
-        (click)="selectPlayer(index)"
-      >
-        <div class="list_run-text">
-          Participant : {{ player.user.username }}
-        </div>
-        <p class="list_run-text">Timer : {{ player.timer }}</p>
+  </div>
+</div>
+
+<hr />
+
+<div class="text-center">
+  <h1>
+    Challenge
+    <i class="fa fa-caret-down event-show" (click)="showChallenges()"></i>
+  </h1>
+</div>
+<div class="text-center" *ngIf="!displayChallenge">
+  <h1>
+    Challenge
+    <i class="fa fa-caret-up event-show" (click)="showChallenges()"> </i>
+  </h1>
+</div>
+
+<div class="container-fluid text-center">
+  <div
+    class="card bg-dark mb-4"
+    *ngFor="let challenge of challenges"
+    style="color: white"
+  >
+    <div id="cardEvent">
+      <div class="card-header text-center">Challenge (nom jeu)</div>
+      <div class="card-body">
+        <p class="card-text">Specificity : {{ challenge.specificity }}</p>
+        <p class="card-text">Description : {{ challenge.description }}</p>
+        <p class="card-text">Conditions : {{ challenge.conditions }}</p>
       </div>
-      <div class=" p-2" *ngIf="index === indexClick">
-        <div class="preview_run">
-          <div class="preview_run-title">Challenge</div>
-          <div class="preview_run-video">
-            <youtube-player [videoId]="player.videoid"></youtube-player>
-            <!-- <iframe
-              id="videoLink"
-              width="400"
-              height="200"
-              src="https://www.youtube.com/embed/8AHCfZTRGiI"
-            ></iframe> -->
-          </div>
-          <div class="preview_run-information">
-            <p class="preview_run-text">
-              Participant : {{ player.user.username }}
-            </p>
-            <p class="preview_run-text">Timer : {{ player.timer }}</p>
-          </div>
-          <div class="validation_run text-center">
-            <button
-              class="btn btn-danger buttonMargin"
-              type="button"
-              (click)="validate(player.idRun, 'refused')"
-            >
-              REFUSED
-            </button>
-            <button
-              class="btn btn-primary buttonMargin"
-              type="button"
-              (click)="validate(player.idRun, 'accepted')"
-            >
-              ACCEPTED
-            </button>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="text-center">
+      <button (click)="redirectAdmin('challenge', challenge.id)">
+        PAGE verification
+      </button>
     </div>
   </div>
 </div>

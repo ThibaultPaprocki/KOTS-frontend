@@ -1,0 +1,68 @@
+<div class="text-center" *ngIf="displayEvent">
+  <h1>
+    {{ typeEvent }}
+    <i class="fa fa-caret-down event-show" (click)="showEvent()"></i>
+  </h1>
+</div>
+<div class="text-center" *ngIf="!displayEvent">
+  <h1>
+    {{ typeEvent }}
+    <i class="fa fa-caret-up event-show" (click)="showEvent()"> </i>
+  </h1>
+</div>
+
+<div class="container-fluid" *ngIf="displayEvent">
+  <div class="text-center" style="font-size: 50px">
+    <button class="logo btn btn-secondary" (click)="open()">
+      Create
+    </button>
+  </div>
+  <div class="scrollOption">
+    <div
+      class="card bg-dark mb-4"
+      *ngFor="let event of events"
+      style="color: white"
+    >
+      <div class="optionss">
+        <div id="cardEvent">
+          <div class="card-header text-center">{{ typeEvent }} (nom jeu)</div>
+          <div class="card-body">
+            <p class="card-text">Specificity : {{ event.specificity }}</p>
+            <p class="card-text">Description : {{ event.description }}</p>
+            <p class="card-text">Conditions : {{ event.conditions }}</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            *ngIf="currentUser.id != event.idUser"
+            class="btn btn-success"
+            (click)="sendLink(event.id)"
+          >
+            Participate
+          </button>
+          <button
+            *ngIf="currentUser.id === event.idUser"
+            class="btn btn-secondary"
+            disabled
+          >
+            You created this challenge
+          </button>
+          <!-- <button
+      *ngIf="state === 'refused'"
+      class="btn btn-secondary"
+      disabled
+    >
+      Your run is refused for now.
+    </button>
+    <button
+      *ngIf="state === 'refused'"
+      class="btn btn-secondary"
+      disabled
+    >
+      Your run is accepted.
+    </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

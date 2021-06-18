@@ -16,6 +16,7 @@ export class ControlSpeedrunEventComponent implements OnInit {
   apiLoaded = false;
   idEvent: number;
   typeEvent: string;
+  stateEvent: string;
 
   constructor(
     private userService: UserService,
@@ -61,10 +62,22 @@ export class ControlSpeedrunEventComponent implements OnInit {
     const validateRun: ValidationRun = {
       idRun: idRun,
       idEvent: this.idEvent, //idEvent a choppé autrement
-      validation: validation,
+      state: validation,
     };
-    //this.eventService.validateParticipationTournament(validateRun).subscribe();
-    this.eventService.validateParticipationChallenge(validateRun).subscribe();
+    console.log(idRun);
+    if (this.typeEvent === "challenge") {
+      this.eventService
+        .validateParticipationChallenge(validateRun)
+        .subscribe(() =>
+          this.eventService
+            .getStateParticipationChallenge(validateRun)
+            .subscribe((state) => (this.stateEvent = state))
+        );
+    } else if (this.typeEvent === "tournament") {
+      this.eventService
+        .validateParticipationTournament(validateRun)
+        .subscribe();
+    }
   }
 
   selectPlayer(index: number) {

@@ -11,6 +11,7 @@ import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speed
 import { AdminComponent } from "./admin/admin.component";
 import { SpeedRunToolComponent } from "./speedrunTools/tool.component";
 import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
+import { EventTypeComponent } from "./event/event-type/event-type.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -18,12 +19,18 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "tools", component: SpeedRunToolComponent },
   { path: "event", component: EventComponent, canActivate: [AuthGuard] },
+  {
+    path: "event/:type",
+    component: EventTypeComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },
   {
     path: "control-speedrun/:type/:id",
     component: ControlSpeedrunEventComponent,
   },
+
   {
     path: "admin",
     component: AdminComponent,

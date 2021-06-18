@@ -89,4 +89,18 @@ export class EventService {
       request
     );
   }
+
+  getStateParticipationTournament(request: ValidationRun) {
+    return this.httpClient.get<string>(
+      `
+      ${environment.url}participate/tournament/state/get/${request.idRun}/${request.idEvent}`
+    );
+  }
+
+  getStateParticipationChallenge(request: ValidationRun) {
+    return this.httpClient.get<string>(
+      `
+      ${environment.url}participate/challenge/state/get/${request.idRun}/${request.idEvent}`
+    );
+  }
 }

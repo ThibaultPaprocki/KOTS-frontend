@@ -25,99 +25,10 @@ import { Subscription } from "rxjs";
   styleUrls: ["./admin.component.css"],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class AdminComponent implements OnInit, OnDestroy {
-  tournaments: Event[];
-  challenges: Event[];
-  currentUser: User;
-  displayTournament: boolean = true;
-  displayChallenge: boolean = true;
-  challengesSubscription: Subscription;
-  tournamentsSubscription: Subscription;
-  state: string;
+export class AdminComponent {
+  constructor(private route: Router) {}
 
-  constructor(
-    private eventService: EventService,
-    private modalService: NgbModal,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.currentUser = this.authService.currentUserValue;
-    this.challengesSubscription = this.eventService.challengesChange$.subscribe(
-      () => {
-        this.loadData();
-      }
-    );
-    this.tournamentsSubscription = this.eventService.tournamentsChange$.subscribe(
-      () => {
-        this.loadData();
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    if (this.challengesSubscription) {
-      this.challengesSubscription.unsubscribe();
-      this.challengesSubscription = null;
-    }
-  }
-
-  ngOnInit(): void {}
-
-  open(event: string) {
-    const modalRef = this.modalService.open(CreateEventModalComponent);
-    (modalRef.componentInstance as CreateEventModalComponent).init(event);
-  }
-
-  sendLink(idEvent: number, event: string) {
-    const modalRef = this.modalService.open(RegisterEventModalComponent);
-    (modalRef.componentInstance as RegisterEventModalComponent).init(
-      this.currentUser.id,
-      idEvent,
-      event
-    );
-  }
-
-  checkParticipationStateTournament(idTournament: number) {
-    const request: ParticipateEventRequest = {
-      idEvent: idTournament,
-      idUser: this.currentUser.id,
-    };
-  }
-
-  checkParticipationStateChallenge(idTournament: number) {
-    const request: ParticipateEventRequest = {
-      idEvent: idTournament,
-      idUser: this.currentUser.id,
-    };
-  }
-
-  participateChallenge(idChallenge: number) {
-    const request: ParticipateEventRequest = {
-      idEvent: idChallenge,
-      idUser: this.currentUser.id,
-    };
-  }
-
-  showTournaments() {
-    this.displayTournament = !this.displayTournament;
-  }
-
-  showChallenges() {
-    this.displayChallenge = !this.displayChallenge;
-  }
-
-  redirectAdmin() {
-    this.router.navigate(["control-speedrun"]);
-  }
-
-  //getPlayer(idChallenge: number) {}
-
-  loadData() {
-    this.eventService.getTournaments().subscribe((tournaments) => {
-      this.tournaments = tournaments;
-    });
-    this.eventService.getChallenges().subscribe((challenges) => {
-      this.challenges = challenges;
-    });
+  redirectSpeedrun() {
+    this.route.navigate(["control-speedrun"]);
   }
 }

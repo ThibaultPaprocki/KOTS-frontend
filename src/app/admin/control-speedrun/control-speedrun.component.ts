@@ -1,66 +1,121 @@
-import { Component, OnInit } from "@angular/core";
-import { UserParticipation } from "src/app/shared/model/user-participation.model";
-import { ValidationRun } from "src/app/shared/model/players.validation.model";
-import { EventService } from "src/app/shared/service/event.service";
-import { UserService } from "src/app/shared/service/user.service";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
+import { EventService } from "../../shared/service/event.service";
+import { Event } from "../../shared/model/event.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CreateEventModalComponent } from "../../event/create-event-modal.component";
 import { User } from "../../shared/model/user.model";
-import { UserRun } from "src/app/shared/model/user-run.model";
+import { AuthService } from "../../shared/service/auth.service";
+import { ParticipateEventRequest } from "../../shared/model/participate-event.request";
+import { ToastrService } from "ngx-toastr";
+import { RegisterEventModalComponent } from "../../event/register-event-modal.component";
+import { Router } from "@angular/router";
+import { UserParticipation } from "../../shared/model/user-participation.model";
+import { ValidationRun } from "../../shared/model/players.validation.model";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-control-speedrun",
   templateUrl: "./control-speedrun.component.html",
   styleUrls: ["./control-speedrun.component.css"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
-export class ControlSpeedrunComponent implements OnInit {
-  users: UserRun[] = [];
-  user: User;
-  indexClick: number;
-  apiLoaded = false;
+export class ControlSpeedrunComponent implements OnInit, OnDestroy {
+  tournaments: Event[];
+  challenges: Event[];
+  currentUser: User;
+  displayTournament: boolean = true;
+  displayChallenge: boolean = true;
+  challengesSubscription: Subscription;
+  tournamentsSubscription: Subscription;
+  state: string;
 
   constructor(
-    private userService: UserService,
-    private eventService: EventService
-  ) {}
+    private eventService: EventService,
+    private modalService: NgbModal,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.currentUser = this.authService.currentUserValue;
+    this.challengesSubscription = this.eventService.challengesChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+    this.tournamentsSubscription = this.eventService.tournamentsChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+  }
 
-  ngOnInit(): void {
-    this.getUsersParticipations(2);
-    if (!this.apiLoaded) {
-      // This code loads the IFrame Player API code asynchronously, according to the instructions at
-      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-      this.apiLoaded = true;
+  ngOnDestroy(): void {
+    if (this.challengesSubscription) {
+      this.challengesSubscription.unsubscribe();
+      this.challengesSubscription = null;
     }
   }
 
-  getUsersParticipations(idEvent: number) {
-    this.eventService
-      .getParticipationsChallenge(idEvent)
-      .subscribe((participations) => (this.users = participations));
+  ngOnInit(): void {}
+
+  open(event: string) {
+    const modalRef = this.modalService.open(CreateEventModalComponent);
+    (modalRef.componentInstance as CreateEventModalComponent).init(event);
   }
 
-  getUsername(idUser: number): string {
-    this.userService.getUsername(idUser).subscribe((name) => {
-      console.log("name : " + name);
-      return name;
-    });
-    return undefined;
+  sendLink(idEvent: number, event: string) {
+    const modalRef = this.modalService.open(RegisterEventModalComponent);
+    (modalRef.componentInstance as RegisterEventModalComponent).init(
+      this.currentUser.id,
+      idEvent,
+      event
+    );
   }
 
-  validate(idRun: number, validation: string) {
-    const validateRun: ValidationRun = {
-      idRun: idRun,
-      idEvent: 1, //idEvent a choppé autrement
-      validation: validation,
+  checkParticipationStateTournament(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
     };
-
-    //this.eventService.validateParticipationTournament(validateRun).subscribe();
-
-    this.eventService.validateParticipationChallenge(validateRun).subscribe();
   }
 
-  selectPlayer(index: number) {
-    this.indexClick = index;
+  checkParticipationStateChallenge(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
+    };
+  }
+
+  participateChallenge(idChallenge: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idChallenge,
+      idUser: this.currentUser.id,
+    };
+  }
+
+  showTournaments() {
+    this.displayTournament = !this.displayTournament;
+  }
+
+  showChallenges() {
+    this.displayChallenge = !this.displayChallenge;
+  }
+
+  redirectAdmin(type: string, eventId: number) {
+    this.router.navigate(["control-speedrun", type, eventId]);
+  }
+
+  loadData() {
+    this.eventService.getTournaments().subscribe((tournaments) => {
+      this.tournaments = tournaments;
+    });
+    this.eventService.getChallenges().subscribe((challenges) => {
+      this.challenges = challenges;
+    });
   }
 }

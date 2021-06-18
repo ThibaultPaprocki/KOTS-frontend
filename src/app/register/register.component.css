@@ -12,7 +12,10 @@ h3 {
 }
 
 #form {
-  width: 300px;
+  min-width: 400px;
+  width: 400px;
+  min-height: 580px;
+  height: 580px;
   display: block;
   margin-right: auto;
   margin-left: auto;
