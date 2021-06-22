@@ -9,13 +9,10 @@ import { EventComponent } from "./event/event.component";
 import { AuthGuard } from "./shared/auth/auth.gard";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { AdminComponent } from "./admin/admin.component";
-<<<<<<< HEAD
 import { RankingComponent } from "./ranking/ranking.component";
-=======
 import { SpeedRunToolComponent } from "./speedrunTools/tool.component";
 import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
 import { EventTypeComponent } from "./event/event-type/event-type.component";
->>>>>>> prod
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -30,7 +27,7 @@ const routes: Routes = [
   },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "control-speedrun", component: ControlSpeedrunComponent },
-  {path: "event/:id/rankings", component: RankingComponent },
+  { path: "event/:id/rankings", component: RankingComponent },
   {
     path: "control-speedrun/:type/:id",
     component: ControlSpeedrunEventComponent,

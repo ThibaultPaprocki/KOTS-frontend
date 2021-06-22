@@ -3,21 +3,16 @@ import { HttpClient } from "@angular/common/http";
 import { Event } from "../model/event.model";
 import { environment } from "../../../environments/environment";
 import { EventRequest } from "../model/event.request";
-import { ParticipateEventRequest } from "../model/participate-event.request";
 import { UserParticipation } from "../model/user-participation.model";
 import { ValidationRun } from "../model/players.validation.model";
-<<<<<<< HEAD
-import { Observable } from "rxjs";
 
-export interface ChallengeRankingModel{
+export interface ChallengeRankingModel {
   id: any;
   username: string;
 }
-=======
 import { BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { UserRun } from "../model/user-run.model";
->>>>>>> prod
 
 @Injectable({
   providedIn: "root",
@@ -59,27 +54,18 @@ export class EventService {
     return this.httpClient.get<Event[]>(environment.url + "challenge/get");
   }
 
-<<<<<<< HEAD
-  getChallengeRankings(challengeId: number): Observable<ChallengeRankingModel[]> {
-    return this.httpClient.get<ChallengeRankingModel[]>(environment.url +`challenge/${challengeId}/rankings`);
+  getChallengeRankings(
+    challengeId: number
+  ): Observable<ChallengeRankingModel[]> {
+    return this.httpClient.get<ChallengeRankingModel[]>(
+      environment.url + `challenge/${challengeId}/rankings`
+    );
   }
 
-  // getPlayersTournament(idTournament: number) {
-  //   return this.httpClient.get<Player[]>(
-  //     `${environment.url}/players/tournament/get/${idTournament}`
-  //   );
-  // }
-
-  getPlayersChallenge(idChallenge: number) {
-    return this.httpClient.get<Player[]>(
-      `${environment.url}player/challenge/get/${idChallenge}`,
-      {}
-=======
   createParticipationTournament(request: UserParticipation) {
     return this.httpClient.post(
       environment.url + "participate/tournament",
       request
->>>>>>> prod
     );
   }
 
