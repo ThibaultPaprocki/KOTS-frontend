@@ -1,22 +1,18 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
 } from "@angular/core";
-import { ChallengeRankingModel, EventService } from "../shared/service/event.service";
+import { EventService } from "../shared/service/event.service";
 import { Event } from "../shared/model/event.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CreateEventModalComponent } from "./create-event-modal.component";
 import { User } from "../shared/model/user.model";
 import { AuthService } from "../shared/service/auth.service";
 import { ParticipateEventRequest } from "../shared/model/participate-event.request";
-import { ToastrService } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./register-event-modal.component";
 import { Router } from "@angular/router";
-import { UserParticipation } from "../shared/model/user-participation.model";
-import { ValidationRun } from "../shared/model/players.validation.model";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -106,17 +102,17 @@ export class EventComponent implements OnInit, OnDestroy {
     this.displayChallenge = !this.displayChallenge;
   }
 
-<<<<<<< HEAD
   redirectAdmin(event: Event) {
     //TODO
-    this.router.navigate([ 'event',  event.id, 'admin' ]);
+    this.router.navigate(["event", event.id, "admin"]);
   }
 
   redirectRankings(event: Event) {
-    this.router.navigate([ 'event',  event.id, 'rankings' ]);
+    this.router.navigate(["event", event.id, "rankings"]);
     // => navigate to angular page "/event/123/rankings"   ... as defined in app.router.ts
     // for Route   { path: 'event/:id/rankings', component: RankingComponent },
-=======
+  }
+
   loadData() {
     this.eventService.getTournaments().subscribe((tournaments) => {
       this.tournaments = tournaments;
@@ -124,6 +120,5 @@ export class EventComponent implements OnInit, OnDestroy {
     this.eventService.getChallenges().subscribe((challenges) => {
       this.challenges = challenges;
     });
->>>>>>> prod
   }
 }
