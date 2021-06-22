@@ -1,4 +1,3 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 
@@ -21,7 +20,12 @@ import { ToastrModule } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./event/register-event-modal.component";
 import { ControlSpeedrunComponent } from "./admin/control-speedrun/control-speedrun.component";
 import { SanitizeHtmlPipe } from "./tool/pipe.component";
-import { RankingComponent } from './ranking/ranking.component';
+import { RankingComponent } from "./ranking/ranking.component";
+import { YouTubePlayerModule } from "@angular/youtube-player";
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
+import { EventTypeComponent } from "./event/event-type/event-type.component";
 
 @NgModule({
   declarations: [
@@ -37,17 +41,21 @@ import { RankingComponent } from './ranking/ranking.component';
     CreateEventModalComponent,
     RegisterEventModalComponent,
     ControlSpeedrunComponent,
+    ControlSpeedrunEventComponent,
+    EventTypeComponent,
     SanitizeHtmlPipe,
     RankingComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    YouTubePlayerModule,
     ToastrModule.forRoot(),
   ],
   providers: [

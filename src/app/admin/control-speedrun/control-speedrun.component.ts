@@ -1,57 +1,121 @@
-import { Component, OnInit } from "@angular/core";
-import { Player } from "src/app/shared/model/players.model";
-import { ValidationRun } from "src/app/shared/model/players.validation.model";
-import { EventService } from "src/app/shared/service/event.service";
-import { UserService } from "src/app/shared/service/user.service";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
+import { EventService } from "../../shared/service/event.service";
+import { Event } from "../../shared/model/event.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CreateEventModalComponent } from "../../event/create-event-modal.component";
 import { User } from "../../shared/model/user.model";
+import { AuthService } from "../../shared/service/auth.service";
+import { ParticipateEventRequest } from "../../shared/model/participate-event.request";
+import { ToastrService } from "ngx-toastr";
+import { RegisterEventModalComponent } from "../../event/register-event-modal.component";
+import { Router } from "@angular/router";
+import { UserParticipation } from "../../shared/model/user-participation.model";
+import { ValidationRun } from "../../shared/model/players.validation.model";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-control-speedrun",
   templateUrl: "./control-speedrun.component.html",
   styleUrls: ["./control-speedrun.component.css"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
-export class ControlSpeedrunComponent implements OnInit {
-  players: Player[];
-  user: User;
-  indexClick: number;
+export class ControlSpeedrunComponent implements OnInit, OnDestroy {
+  tournaments: Event[];
+  challenges: Event[];
+  currentUser: User;
+  displayTournament: boolean = true;
+  displayChallenge: boolean = true;
+  challengesSubscription: Subscription;
+  tournamentsSubscription: Subscription;
+  state: string;
 
   constructor(
-    private userService: UserService,
-    private eventService: EventService
+    private eventService: EventService,
+    private modalService: NgbModal,
+    private authService: AuthService,
+    private router: Router
   ) {
-    this.getPlayers(2);
+    this.currentUser = this.authService.currentUserValue;
+    this.challengesSubscription = this.eventService.challengesChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+    this.tournamentsSubscription = this.eventService.tournamentsChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
   }
 
-  ngOnInit(): void {
-    this.getPlayers(2);
+  ngOnDestroy(): void {
+    if (this.challengesSubscription) {
+      this.challengesSubscription.unsubscribe();
+      this.challengesSubscription = null;
+    }
   }
 
-  getPlayers(idEvent: number) {
-    this.eventService
-      .getPlayersChallenge(idEvent)
-      .subscribe((playerList) => (this.players = playerList));
+  ngOnInit(): void {}
+
+  open(event: string) {
+    const modalRef = this.modalService.open(CreateEventModalComponent);
+    (modalRef.componentInstance as CreateEventModalComponent).init(event);
   }
 
-  getUsername(idUser: number): string {
-    this.userService.getUsername(idUser).subscribe((name) => {
-      console.log("name : " + name);
-      return name;
-    });
-    return undefined;
+  sendLink(idEvent: number, event: string) {
+    const modalRef = this.modalService.open(RegisterEventModalComponent);
+    (modalRef.componentInstance as RegisterEventModalComponent).init(
+      this.currentUser.id,
+      idEvent,
+      event
+    );
   }
 
-  validate(idUser: number, idEvent: number, validation: boolean) {
-    const validateRun: ValidationRun = {
-      idUser: idUser,
-      idEvent: idEvent,
-      validation: validation,
+  checkParticipationStateTournament(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
     };
-
-    // this.eventService.validateTournament(validateRun).subscribe();
-    // this.eventService.validateChallenge(validateRun).subscribe();
   }
 
-  selectPlayer(index: number) {
-    this.indexClick = index;
+  checkParticipationStateChallenge(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
+    };
+  }
+
+  participateChallenge(idChallenge: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idChallenge,
+      idUser: this.currentUser.id,
+    };
+  }
+
+  showTournaments() {
+    this.displayTournament = !this.displayTournament;
+  }
+
+  showChallenges() {
+    this.displayChallenge = !this.displayChallenge;
+  }
+
+  redirectAdmin(type: string, eventId: number) {
+    this.router.navigate(["control-speedrun", type, eventId]);
+  }
+
+  loadData() {
+    this.eventService.getTournaments().subscribe((tournaments) => {
+      this.tournaments = tournaments;
+    });
+    this.eventService.getChallenges().subscribe((challenges) => {
+      this.challenges = challenges;
+    });
   }
 }

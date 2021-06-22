@@ -1,0 +1,89 @@
+<div class="container main_CS">
+  <div class="text-center">
+    <h1>Run verification</h1>
+
+    <label for="challenge/tournament-run">Tournament or challenge :</label>
+    <input
+      type="search"
+      id="challenge/tournament-run"
+      placeholder="Tournament or challenge..."
+    />
+  </div>
+
+  <!--   <div class="preview_run">
+        <div class="preview_run-title">Nom de la run</div>
+        <div class="preview_run-video">
+            <iframe width="600" height="400" src=""></iframe>
+        </div>
+        <div class="preview_run-information">
+            <p class="preview_run-text">Compte : {{ }}</p>
+            <p class="preview_run-text">Timer : {{ }}</p>
+        </div>
+        <div class="validation_run">
+            <input type="button" value="accepted">
+            <input type="button" value="refuse">
+        </div>
+    </div>
+    -->
+  <div class="list_run">
+    <div
+      class="d-flex container"
+      *ngFor="let participant of participants; let index = index"
+    >
+      <div
+        class="list_run-information mr-auto p-2"
+        (click)="selectPlayer(index)"
+      >
+        <div class="list_run-text">
+          Participant {{ participant.id }} : {{ participant.user.username }}
+        </div>
+        <p class="list_run-text">Timer : {{ participant.timer }}</p>
+      </div>
+      <div class=" p-2" *ngIf="index === indexClick">
+        <div class="preview_run card">
+          <div class="preview_run-title">Challenge</div>
+          <div class="preview_run-video">
+            <youtube-player [videoId]="participant.videoid"></youtube-player>
+            <!-- <iframe
+              id="videoLink"
+              width="400"
+              height="200"
+              src="https://www.youtube.com/embed/8AHCfZTRGiI"
+            ></iframe> -->
+          </div>
+          <div class="preview_run-information">
+            <p class="preview_run-text">
+              Participant : {{ participant.user.username }}
+            </p>
+            <p class="preview_run-text">Timer : {{ participant.timer }}</p>
+          </div>
+          <div class="validation_run text-center">
+            <div *ngIf="stateEvent === 'refused'">
+              LA RUN EST REFUSE
+            </div>
+            <div *ngIf="stateEvent === 'accepted'">
+              LA RUN EST REFUSE
+            </div>
+            <div *ngIf="stateEvent === 'waiting'">
+              LA RUN EST REFUSE
+            </div>
+            <button
+              class="btn btn-danger buttonMargin"
+              type="button"
+              (click)="validate(participant.id, 'refused')"
+            >
+              REFUSED
+            </button>
+            <button
+              class="btn btn-primary buttonMargin"
+              type="button"
+              (click)="validate(participant.id, 'accepted')"
+            >
+              ACCEPTED
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,17 +9,24 @@
   <li class="nav-item">
     <a class="nav-link active" routerLink="home">Home</a>
   </li>
-  <li class="nav-item p-2 flex-grow-1 bd-highlight">
+  <li class="nav-item">
     <a class="nav-link" routerLink="event">Events</a>
   </li>
   <li class="nav-item p-2 flex-grow-1 bd-highlight">
+<<<<<<< HEAD
     <a class="nav-link" routerLink="ranking">Ranking</a>
+=======
+    <a class="nav-link" routerLink="tools">Tools</a>
+>>>>>>> prod
   </li>
   <li class="nav-item p-2 bd-highlight" *ngIf="!currentUser">
     <a class="nav-link" routerLink="login">Log In</a>
   </li>
   <li class="nav-item p-2 bd-highlight" *ngIf="!currentUser">
     <a class="nav-link" routerLink="register">Sign Up</a>
+  </li>
+  <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
+    <a class="nav-link" routerLink="admin">Admin</a>
   </li>
   <li class="nav-item p-2 bd-highlight" *ngIf="currentUser">
     <a class="nav-link profil" routerLink="profil">{{

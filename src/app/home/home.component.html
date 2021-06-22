@@ -1,6 +1,9 @@
 <ngb-carousel *ngIf="images" id="slide" class="container text-center">
   <ng-template ngbSlide>
-    <div class="picsum-img-wrapper img_transform text-center">
+    <div
+      class="picsum-img-wrapper img_transform text-center"
+      (click)="redirectChallenge()"
+    >
       <img src="../../assets/images/img2.png" alt="Random first slide" />
     </div>
     <div class="carousel-caption">
@@ -12,7 +15,10 @@
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <div class="picsum-img-wrapper img_transform text-center">
+    <div
+      class="picsum-img-wrapper img_transform text-center"
+      (click)="redirectEvent()"
+    >
       <img src="../../assets/images/img4.png" alt="Random second slide" />
     </div>
     <div class="carousel-caption">
@@ -21,7 +27,10 @@
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <div class="picsum-img-wrapper img_transform text-center">
+    <div
+      class="picsum-img-wrapper img_transform text-center"
+      (click)="redirectTournament()"
+    >
       <img src="../../assets/images/img5.jpg" alt="Random third slide" />
     </div>
     <div class="carousel-caption">

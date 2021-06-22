@@ -1,8 +1,49 @@
-.list_run-information {
-  background-color: beige;
-  margin: 20px;
+h1 {
+  color: #343a40;
+
+  -webkit-text-stroke: 1px white; /* width and color */
+  font-weight: bolder;
 }
 
-.buttonMargin {
-  margin: 20px;
+.card {
+  width: 300px;
+  height: 320px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-table;
+}
+
+.card p {
+  white-space: normal;
+}
+
+hr {
+  width: 1000px;
+  color: #343a40;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 30px;
+  font-size: 0.4em;
+  background-color: #343a40;
+  color: white;
+}
+
+.event-show {
+  cursor: pointer;
+}
+
+#cardEvent {
+  height: 250px;
+}
+
+.scrollOption {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.optionss {
+  width: 300px !important;
+  max-width: 300px !important;
 }

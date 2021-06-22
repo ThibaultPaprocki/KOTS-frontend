@@ -1,75 +1,7 @@
-<!-- <div [formGroup]="registerForm" class="container">
-  <div id="form">
-    <h1 class="mb-3 text-center">Register</h1>
-    <div class="mb-3">
-      <label for="username"><h3>Username</h3></label>
-      <input
-        formControlName="username"
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Username"
-        required=""
-      />
-      <div class="invalid-feedback" style="width: 100%">
-        Your username is required.
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="password"
-        ><h3>Password</h3>
-        <span class="text-muted"></span
-      ></label>
-      <input
-        formControlName="password"
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Password"
-      />
-      <div class="invalid-feedback">
-        Please enter a valid username and password to connect.
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="email"
-        ><h3>Email (Optional)</h3>
-        <span class="text-muted"></span
-      ></label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">@</span>
-        </div>
-        <input
-          formControlName="mail"
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="you@example.com"
-        />
-        <div class="invalid-feedback">
-          Please enter a valid email address for shipping updates.
-        </div>
-      </div>
-    </div>
-
-    <button
-      [disabled]="registerForm.invalid"
-      (click)="registerUser()"
-      class="btn btn-primary btn-lg btn-block"
-      type="submit"
-    >
-      Register
-    </button>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-8 offset-md-2">
-      <div class="card">
+      <div class="card" id="form">
         <h1 class="mb-3 text-center">Register</h1>
         <div class="mb-3">
           <div class="card-body">
@@ -109,24 +41,11 @@
                 <label for="email">Repeat your password</label>
                 <div class="input-group">
                   <input
-                    [type]="fieldTextType2 ? 'text' : 'password'"
                     type="password"
                     class="form-control"
                     formControlName="confirmedPassword"
                     [disabled]="registerForm.invalid"
                   />
-                  <div class="input-group-append">
-                    <span class="input-group-text">
-                      <i
-                        class="fa"
-                        [ngClass]="{
-                          'fa-eye-slash': !fieldTextType2,
-                          'fa-eye': fieldTextType2
-                        }"
-                        (click)="toggleFieldTextType2()"
-                      ></i>
-                    </span>
-                  </div>
                 </div>
               </div>
               <div class="form-group">

@@ -1,7 +1,9 @@
 <div
   [formGroup]="updateProfil"
   class="card bg-dark mb-3 container"
+  id="profil"
   style="max-width: 25rem"
+  *ngIf="currentUser"
 >
   <div class="card-header text-center" style="font-size: 2em">
     {{ currentUser.username }}
@@ -10,14 +12,12 @@
     <div class="card-text password" [formGroup]="updPassword">
       Password :
       <i class="fa fa-edit" (click)="updatingPassword()"></i>
-      <div class="password">
+      <div class="password" *ngIf="updating">
         <input
-          #pswd
           type="password"
           class="form-control"
           formControlName="password"
           id="username"
-          [disabled]="updating"
         />
       </div>
       <div class="text-center">

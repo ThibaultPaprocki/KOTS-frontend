@@ -1,18 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { AuthService } from "../shared/service/auth.service";
 import { User } from "../shared/model/user.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../shared/service/user.service";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import { disableDebugTools } from "@angular/platform-browser";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-profil",
   templateUrl: "./profil.component.html",
   styleUrls: ["./profil.component.css"],
 })
-export class ProfilComponent implements OnInit {
+export class ProfilComponent {
   currentUser: User;
   updateProfil: FormGroup;
   updPassword: FormGroup;
@@ -20,9 +20,7 @@ export class ProfilComponent implements OnInit {
   show: boolean = false;
   updating: boolean = false;
   //loginForm: FormGroup;
-
-  @ViewChild("pswd")
-  private editPassword!: ElementRef;
+  userSubscription: Subscription;
 
   constructor(
     private auth: AuthService,
@@ -30,7 +28,11 @@ export class ProfilComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.currentUser = this.auth.currentUserValue;
+    this.userSubscription = this.auth.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+      this.loadData();
+    });
+
     this.updPassword = new FormGroup({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
@@ -41,15 +43,10 @@ export class ProfilComponent implements OnInit {
       twitch: new FormControl("", [Validators.required]),
       youtube: new FormControl("", [Validators.required]),
     });
-
-    // this.loginForm = new FormGroup({
-    //   username: new FormControl("", [Validators.required]),
-    //   password: new FormControl("", [Validators.required]),
-    // });
     this.updating = false;
   }
 
-  ngOnInit(): void {
+  loadData(): void {
     this.updateProfil.setValue({
       mail: this.currentUser.mail,
       description: this.currentUser.description,
@@ -65,9 +62,13 @@ export class ProfilComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.updateProfil.value).subscribe(
       () => {
-        this.auth.logout();
+        this.userSubscription = this.auth.getCurrentUser().subscribe((user) => {
+          this.currentUser = user;
+          this.loadData();
+        });
+        //this.auth.logout();
         // this.auth.login(this.loginForm.value).subscribe(
-        //   () => {
+        //  () => {
         //     this.router.navigate(["profil"]);
         //   },
         //   (error) => {
@@ -75,8 +76,7 @@ export class ProfilComponent implements OnInit {
         //     console.log(error);
         //   }
         // );
-        this.router.navigate(["login"]);
-        location.reload();
+        //this.router.navigate(["login"]);
       },
       (error) => {
         this.toastr.error("Updating Profil Error");
@@ -91,7 +91,6 @@ export class ProfilComponent implements OnInit {
         if (data) {
           this.auth.logout();
           this.router.navigate(["login"]);
-          location.reload();
         } else {
           this.toastr.error("Password already exists");
         }

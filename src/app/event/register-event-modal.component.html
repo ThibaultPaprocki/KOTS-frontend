@@ -1,8 +1,13 @@
 <div class="container options" [formGroup]="eventForm">
   <div>
     <div class="link">
-      <p>Send us your video link to register to the event</p>
-      <input type="url" class="form-control" formControlName="urlVideo" />
+      <p>Send us your video id to register to the event</p>
+      <input
+        type="url"
+        class="form-control"
+        formControlName="videoId"
+        placeholder="https://www.youtube.com/watch?v={ BwSxYKQRJXc }<-"
+      />
       <div class="invalid-feedback">A link is required.</div>
     </div>
     <div class="mb-3">

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
   OnInit,
 } from "@angular/core";
 import { ChallengeRankingModel, EventService } from "../shared/service/event.service";
@@ -14,6 +15,9 @@ import { ParticipateEventRequest } from "../shared/model/participate-event.reque
 import { ToastrService } from "ngx-toastr";
 import { RegisterEventModalComponent } from "./register-event-modal.component";
 import { Router } from "@angular/router";
+import { UserParticipation } from "../shared/model/user-participation.model";
+import { ValidationRun } from "../shared/model/players.validation.model";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-event",
@@ -21,32 +25,43 @@ import { Router } from "@angular/router";
   styleUrls: ["./event.component.css"],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnDestroy {
   tournaments: Event[];
   challenges: Event[];
   currentUser: User;
   displayTournament: boolean = true;
   displayChallenge: boolean = true;
+  challengesSubscription: Subscription;
+  tournamentsSubscription: Subscription;
+  state: string;
 
   constructor(
     private eventService: EventService,
     private modalService: NgbModal,
-    private ref: ChangeDetectorRef,
     private authService: AuthService,
-    private toastr: ToastrService,
     private router: Router
   ) {
     this.currentUser = this.authService.currentUserValue;
+    this.challengesSubscription = this.eventService.challengesChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+    this.tournamentsSubscription = this.eventService.tournamentsChange$.subscribe(
+      () => {
+        this.loadData();
+      }
+    );
   }
 
-  ngOnInit(): void {
-    this.eventService.getTournaments().subscribe((tournaments) => {
-      this.tournaments = tournaments;
-    });
-    this.eventService.getChallenges().subscribe((challenges) => {
-      this.challenges = challenges;
-    });
+  ngOnDestroy(): void {
+    if (this.challengesSubscription) {
+      this.challengesSubscription.unsubscribe();
+      this.challengesSubscription = null;
+    }
   }
+
+  ngOnInit(): void {}
 
   open(event: string) {
     const modalRef = this.modalService.open(CreateEventModalComponent);
@@ -62,19 +77,18 @@ export class EventComponent implements OnInit {
     );
   }
 
-  participateTournament(idTournament: number) {
+  checkParticipationStateTournament(idTournament: number) {
     const request: ParticipateEventRequest = {
       idEvent: idTournament,
       idUser: this.currentUser.id,
     };
-    this.eventService.registerTournament(request).subscribe(
-      () => {
-        location.reload();
-      },
-      (error) => {
-        this.toastr.error("Register Event Error");
-      }
-    );
+  }
+
+  checkParticipationStateChallenge(idTournament: number) {
+    const request: ParticipateEventRequest = {
+      idEvent: idTournament,
+      idUser: this.currentUser.id,
+    };
   }
 
   participateChallenge(idChallenge: number) {
@@ -82,14 +96,6 @@ export class EventComponent implements OnInit {
       idEvent: idChallenge,
       idUser: this.currentUser.id,
     };
-    this.eventService.registerChallenge(request).subscribe(
-      () => {
-        location.reload();
-      },
-      (error) => {
-        this.toastr.error("Register Event Error");
-      }
-    );
   }
 
   showTournaments() {
@@ -100,6 +106,7 @@ export class EventComponent implements OnInit {
     this.displayChallenge = !this.displayChallenge;
   }
 
+<<<<<<< HEAD
   redirectAdmin(event: Event) {
     //TODO
     this.router.navigate([ 'event',  event.id, 'admin' ]);
@@ -109,5 +116,14 @@ export class EventComponent implements OnInit {
     this.router.navigate([ 'event',  event.id, 'rankings' ]);
     // => navigate to angular page "/event/123/rankings"   ... as defined in app.router.ts
     // for Route   { path: 'event/:id/rankings', component: RankingComponent },
+=======
+  loadData() {
+    this.eventService.getTournaments().subscribe((tournaments) => {
+      this.tournaments = tournaments;
+    });
+    this.eventService.getChallenges().subscribe((challenges) => {
+      this.challenges = challenges;
+    });
+>>>>>>> prod
   }
 }
