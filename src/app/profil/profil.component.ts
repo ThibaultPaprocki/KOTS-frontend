@@ -66,17 +66,7 @@ export class ProfilComponent {
           this.currentUser = user;
           this.loadData();
         });
-        //this.auth.logout();
-        // this.auth.login(this.loginForm.value).subscribe(
-        //  () => {
-        //     this.router.navigate(["profil"]);
-        //   },
-        //   (error) => {
-        //     this.toastr.error("Updating Profil Error");
-        //     console.log(error);
-        //   }
-        // );
-        //this.router.navigate(["login"]);
+        this.toastr.success("Informations bien modifiées");
       },
       (error) => {
         this.toastr.error("Updating Profil Error");

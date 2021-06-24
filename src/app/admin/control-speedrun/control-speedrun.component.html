@@ -1,4 +1,4 @@
-<div id="title" class="text-center">
+<div id="title" class="text-center" *ngIf="displayTournament">
   <h1>
     Tournaments
     <i class="fa fa-caret-down event-show" (click)="showTournaments()"></i>
@@ -11,7 +11,7 @@
   </h1>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="displayTournament">
   <div
     class="card bg-dark mb-4"
     *ngFor="let tournament of tournaments"
@@ -37,7 +37,7 @@
 
 <hr />
 
-<div class="text-center">
+<div class="text-center" *ngIf="displayChallenge">
   <h1>
     Challenge
     <i class="fa fa-caret-down event-show" (click)="showChallenges()"></i>
@@ -50,7 +50,7 @@
   </h1>
 </div>
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center" *ngIf="displayChallenge">
   <div
     class="card bg-dark mb-4"
     *ngFor="let challenge of challenges"

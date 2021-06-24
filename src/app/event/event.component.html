@@ -78,27 +78,6 @@
       Create
     </button>
   </div>
-<<<<<<< HEAD
-  <div
-    class="card bg-dark mb-4"
-    *ngFor="let challenge of challenges"
-    style="color: white"
-  >
-    <div id="cardEvent">
-      <div class="card-header text-center">Challenge (nom jeu){{challenge.id}}</div>
-      <div class="card-body">
-        <p class="card-text">Specificity : {{ challenge.specificity }}</p>
-        <p class="card-text">Description : {{ challenge.description }}</p>
-        <p class="card-text">Conditions : {{ challenge.conditions }}</p>
-      </div>
-    </div>
-    <button (click)="redirectAdmin(challenge)">PAGE ADMIN</button>
-    <button (click)="redirectRankings(challenge)">RANKINGS</button>
-    <button
-      *ngIf="currentUser.id != challenge.idUser"
-      class="btn btn-success"
-      (click)="sendLink(challenge.id, 'challenge')"
-=======
   <div class="scrollOption">
     <div
       class="card bg-dark mb-4"
@@ -113,6 +92,8 @@
             <p class="card-text">Description : {{ challenge.description }}</p>
             <p class="card-text">Conditions : {{ challenge.conditions }}</p>
           </div>
+
+          <button (click)="redirectRankings(challenge)">RANKINGS</button>
         </div>
         <div class="text-center">
           <button
@@ -133,7 +114,6 @@
       *ngIf="state === 'refused'"
       class="btn btn-secondary"
       disabled
->>>>>>> prod
     >
       Your run is refused for now.
     </button>
