@@ -13,6 +13,7 @@ import { RankingComponent } from "./ranking/ranking.component";
 import { SpeedRunToolComponent } from "./speedrunTools/tool.component";
 import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
 import { EventTypeComponent } from "./event/event-type/event-type.component";
+import { AuthRole } from "./shared/auth/auth.role";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -26,16 +27,26 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
-  { path: "control-speedrun", component: ControlSpeedrunComponent },
-  { path: "event/:id/rankings", component: RankingComponent },
+  {
+    path: "control-speedrun",
+    component: ControlSpeedrunComponent,
+    canActivate: [AuthGuard, AuthRole],
+  },
+  {
+    path: "event/:id/rankings",
+    component: RankingComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "control-speedrun/:type/:id",
     component: ControlSpeedrunEventComponent,
+    canActivate: [AuthGuard, AuthRole],
   },
 
   {
     path: "admin",
     component: AdminComponent,
+    canActivate: [AuthGuard, AuthRole],
     children: [
       //{ path: '', pathMatch: "prefix", redirectTo: 'control-speedrun' },
       //{ path: "control-speedrun", component: ControlSpeedrunComponent },

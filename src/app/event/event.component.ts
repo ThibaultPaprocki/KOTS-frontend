@@ -54,6 +54,9 @@ export class EventComponent implements OnInit, OnDestroy {
     if (this.challengesSubscription) {
       this.challengesSubscription.unsubscribe();
       this.challengesSubscription = null;
+    } else if (this.tournamentsSubscription) {
+      this.tournamentsSubscription.unsubscribe();
+      this.tournamentsSubscription = null;
     }
   }
 

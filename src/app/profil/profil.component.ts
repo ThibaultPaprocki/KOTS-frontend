@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { AuthService } from "../shared/service/auth.service";
 import { User } from "../shared/model/user.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
   templateUrl: "./profil.component.html",
   styleUrls: ["./profil.component.css"],
 })
-export class ProfilComponent {
+export class ProfilComponent implements OnDestroy {
   currentUser: User;
   updateProfil: FormGroup;
   updPassword: FormGroup;
@@ -99,5 +99,12 @@ export class ProfilComponent {
 
   showPassword() {
     this.show = !this.show;
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+      this.userSubscription = null;
+    }
   }
 }

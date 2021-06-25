@@ -6,22 +6,36 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map, mergeAll } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
+export interface RoleEntity {
+  authority: string;
+}
+
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private currentRoleSubject: BehaviorSubject<RoleEntity[]>;
+  public currentRole: Observable<RoleEntity[]>;
 
   constructor(private httpClient: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );
+    this.currentRoleSubject = new BehaviorSubject<RoleEntity[]>(
+      JSON.parse(localStorage.getItem("currentRole"))
+    );
     this.currentUser = this.currentUserSubject.asObservable();
+    this.currentRole = this.currentRoleSubject.asObservable();
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  public get currentRoleValue(): RoleEntity[] {
+    return this.currentRoleSubject.value;
   }
 
   register(request: UserRequest) {
@@ -33,6 +47,7 @@ export class AuthService {
       .post<void>(environment.url + "login", request)
       .pipe(
         map(() => {
+          this.getRole();
           return this.getCurrentUser();
         }),
         mergeAll()
@@ -51,9 +66,24 @@ export class AuthService {
     return this.httpClient.get<User>(environment.url + "user");
   }
 
+  getRole() {
+    return this.httpClient
+      .get<RoleEntity[]>(environment.url + "roles")
+      .subscribe((role) => {
+        localStorage.setItem("currentUser", JSON.stringify(role));
+        this.currentRoleSubject.next(role);
+        return role;
+      });
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
+    this.currentUser = null;
+    location.reload();
+    localStorage.removeItem("currentRole");
+    this.currentRoleSubject.next(null);
+    this.currentRole = null;
   }
 }
