@@ -4,15 +4,21 @@ import { Event } from "../model/event.model";
 import { environment } from "../../../environments/environment";
 import { EventRequest } from "../model/event.request";
 import { UserParticipation } from "../model/user-participation.model";
-import { ValidationRun } from "../model/players.validation.model";
+import {
+  Participation,
+  ValidationRun,
+} from "../model/players.validation.model";
+import { BehaviorSubject, Observable } from "rxjs";
+import { tap } from "rxjs/operators";
+import { UserRun } from "../model/user-run.model";
 
 export interface ChallengeRankingModel {
   id: any;
   username: string;
 }
-import { BehaviorSubject, Observable } from "rxjs";
-import { tap } from "rxjs/operators";
-import { UserRun } from "../model/user-run.model";
+export interface State {
+  state: string;
+}
 
 @Injectable({
   providedIn: "root",
@@ -21,6 +27,8 @@ export class EventService {
   public readonly tournamentsChange$ = new BehaviorSubject<string>("init");
 
   public readonly challengesChange$ = new BehaviorSubject<string>("init");
+
+  public readonly stateChange$ = new BehaviorSubject<string>("get");
 
   constructor(private httpClient: HttpClient) {}
 
@@ -82,9 +90,26 @@ export class EventService {
     );
   }
 
+  getParticipationTournament(
+    idTournament: number,
+    idUser: number
+  ): Observable<UserRun> {
+    return this.httpClient.get<UserRun>(
+      `${environment.url}participate/tournament/get/${idTournament}/${idUser}`
+    );
+  }
+
   getParticipationsChallenge(idChallenge: number): Observable<UserRun[]> {
     return this.httpClient.get<UserRun[]>(
       `${environment.url}participate/challenge/get/${idChallenge}`
+    );
+  }
+  getParticipationChallenge(
+    idChallenge: number,
+    idUser: number
+  ): Observable<UserRun> {
+    return this.httpClient.get<UserRun>(
+      `${environment.url}participate/challenge/get/${idChallenge}/${idUser}`
     );
   }
 
@@ -102,17 +127,31 @@ export class EventService {
     );
   }
 
-  getStateParticipationTournament(request: ValidationRun) {
-    return this.httpClient.get<string>(
-      `
+  getStateParticipationTournament(request: Participation) {
+    return this.httpClient
+      .get<State>(
+        `
       ${environment.url}participate/tournament/state/get/${request.idRun}/${request.idEvent}`
-    );
+      )
+      .pipe(
+        tap(() => {
+          console.log("new state get");
+          this.stateChange$.next("got");
+        })
+      );
   }
 
-  getStateParticipationChallenge(request: ValidationRun) {
-    return this.httpClient.get<string>(
-      `
+  getStateParticipationChallenge(request: Participation) {
+    return this.httpClient
+      .get<State>(
+        `
       ${environment.url}participate/challenge/state/get/${request.idRun}/${request.idEvent}`
-    );
+      )
+      .pipe(
+        tap(() => {
+          console.log("new state get");
+          this.stateChange$.next("got");
+        })
+      );
   }
 }

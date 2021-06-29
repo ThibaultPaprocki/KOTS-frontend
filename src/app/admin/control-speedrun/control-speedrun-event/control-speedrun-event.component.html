@@ -32,10 +32,10 @@
     >
       <div
         class="list_run-information mr-auto p-2"
-        (click)="selectPlayer(index)"
+        (click)="selectPlayer(index, participant.id)"
       >
         <div class="list_run-text">
-          Participant {{ participant.id }} : {{ participant.user.username }}
+          Participant : {{ participant.user.username }}
         </div>
         <p class="list_run-text">Timer : {{ participant.timer }}</p>
       </div>
@@ -57,29 +57,29 @@
             </p>
             <p class="preview_run-text">Timer : {{ participant.timer }}</p>
           </div>
-          <div class="validation_run text-center">
-            <div *ngIf="stateEvent === 'refused'">
-              LA RUN EST REFUSE
+          <div class="validation_run text-center" *ngIf="stateRun">
+            <div *ngIf="stateRun.state === 'refused'">
+              The participation is refused
             </div>
-            <div *ngIf="stateEvent === 'accepted'">
-              LA RUN EST REFUSE
+            <div *ngIf="stateRun.state === 'accepted'">
+              The participation is accepted
             </div>
-            <div *ngIf="stateEvent === 'waiting'">
-              LA RUN EST REFUSE
+            <div *ngIf="stateRun.state === 'waiting'">
+              The participation is waiting
             </div>
             <button
               class="btn btn-danger buttonMargin"
               type="button"
               (click)="validate(participant.id, 'refused')"
             >
-              REFUSED
+              REFUSE
             </button>
             <button
               class="btn btn-primary buttonMargin"
               type="button"
               (click)="validate(participant.id, 'accepted')"
             >
-              ACCEPTED
+              ACCEPT
             </button>
           </div>
         </div>

@@ -48,6 +48,7 @@ export class AuthService {
       .pipe(
         map(() => {
           this.getRole();
+
           return this.getCurrentUser();
         }),
         mergeAll()
@@ -56,6 +57,7 @@ export class AuthService {
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentUser", JSON.stringify(user));
+          //localStorage.setItem("token", "isLoggedIn").subscribe(() => {});
           this.currentUserSubject.next(user);
           return user;
         })
@@ -70,7 +72,7 @@ export class AuthService {
     return this.httpClient
       .get<RoleEntity[]>(environment.url + "roles")
       .subscribe((role) => {
-        localStorage.setItem("currentUser", JSON.stringify(role));
+        localStorage.setItem("currentRole", JSON.stringify(role));
         this.currentRoleSubject.next(role);
         return role;
       });
@@ -80,10 +82,7 @@ export class AuthService {
     // remove user from local storage and set current user to null
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
-    this.currentUser = null;
-    location.reload();
     localStorage.removeItem("currentRole");
     this.currentRoleSubject.next(null);
-    this.currentRole = null;
   }
 }

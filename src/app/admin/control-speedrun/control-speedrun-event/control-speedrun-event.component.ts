@@ -1,9 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { ValidationRun } from "src/app/shared/model/players.validation.model";
-import { EventService } from "src/app/shared/service/event.service";
+import {
+  Participation,
+  ValidationRun,
+} from "src/app/shared/model/players.validation.model";
+import { EventService, State } from "src/app/shared/service/event.service";
 import { UserService } from "src/app/shared/service/user.service";
 import { UserRun } from "src/app/shared/model/user-run.model";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { PartialObserver, Subscription } from "rxjs";
 
 @Component({
   selector: "app-control-speedrun-event",
@@ -16,7 +20,9 @@ export class ControlSpeedrunEventComponent implements OnInit {
   apiLoaded = false;
   idEvent: number;
   typeEvent: string;
-  stateEvent: string;
+  stateRun: State;
+
+  stateSubscription: Subscription;
 
   constructor(
     private userService: UserService,
@@ -64,15 +70,19 @@ export class ControlSpeedrunEventComponent implements OnInit {
       idEvent: this.idEvent, //idEvent a choppé autrement
       state: validation,
     };
+    const participation: Participation = {
+      idRun: idRun,
+      idEvent: this.idEvent,
+    };
     console.log(idRun);
     if (this.typeEvent === "challenge") {
       this.eventService
         .validateParticipationChallenge(validateRun)
-        .subscribe(() =>
+        .subscribe(() => {
           this.eventService
-            .getStateParticipationChallenge(validateRun)
-            .subscribe((state) => (this.stateEvent = state))
-        );
+            .getStateParticipationChallenge(participation)
+            .subscribe((currentState) => (this.stateRun = currentState));
+        });
     } else if (this.typeEvent === "tournament") {
       this.eventService
         .validateParticipationTournament(validateRun)
@@ -80,7 +90,38 @@ export class ControlSpeedrunEventComponent implements OnInit {
     }
   }
 
-  selectPlayer(index: number) {
+  selectPlayer(index: number, idRun: number, event: MouseEvent) {
+    const participation: Participation = {
+      idRun: idRun,
+      idEvent: this.idEvent,
+    };
     this.indexClick = index;
+    this.loadData(participation);
+    // this.stateSubscription = this.eventService.stateChange$.subscribe(() => {
+    //   this.loadData(participation);
+    // });
+  }
+
+  loadData(participation: Participation) {
+    if (this.typeEvent === "challenge") {
+      this.eventService
+        .getStateParticipationChallenge(participation)
+        .subscribe((state) => {
+          this.stateRun = state;
+        });
+    } else if (this.typeEvent === "tournament") {
+      this.eventService
+        .getStateParticipationTournament(participation)
+        .subscribe((state) => {
+          this.stateRun = state;
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.stateSubscription) {
+      this.stateSubscription.unsubscribe();
+      this.stateSubscription = null;
+    }
   }
 }
