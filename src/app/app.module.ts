@@ -26,6 +26,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { ControlSpeedrunEventComponent } from "./admin/control-speedrun/control-speedrun-event/control-speedrun-event.component";
 import { EventTypeComponent } from "./event/event-type/event-type.component";
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EventTypeComponent } from "./event/event-type/event-type.component";
     EventTypeComponent,
     SanitizeHtmlPipe,
     RankingComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
